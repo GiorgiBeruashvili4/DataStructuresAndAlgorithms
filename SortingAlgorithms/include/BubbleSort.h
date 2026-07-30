@@ -13,8 +13,8 @@
 // Stable: Yes
 // In-place: Yes
 
-template<typename T>
-void BubbleSort(std::vector<T>& arr)
+template<typename T, typename Compare = std::less<T>>
+void BubbleSort(std::vector<T>& arr, Compare compare = Compare())
 {
 	const std::size_t size = arr.size();
 
@@ -23,7 +23,7 @@ void BubbleSort(std::vector<T>& arr)
 		bool swapped = false;
 		for (std::size_t j = 0;j + 1 < size - i;++j)
 		{
-			if (arr[j + 1] < arr[j])
+			if (compare(arr[j + 1], arr[j]))
 			{
 				std::swap(arr[j], arr[j + 1]);
 				swapped = true;

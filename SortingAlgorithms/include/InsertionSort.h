@@ -12,8 +12,8 @@
 // Stable: Yes
 // In-place: Yes
 
-template<typename T>
-void InsertionSort(std::vector<T>& arr)
+template<typename T, typename Compare = std::less<T>>
+void InsertionSort(std::vector<T>& arr, Compare compare = Compare())
 {
 	const std::size_t size = arr.size();
 
@@ -22,7 +22,7 @@ void InsertionSort(std::vector<T>& arr)
 		T key = arr[i];
 		std::size_t j = i;
 
-		while (j > 0 && key < arr[j - 1])
+		while (j > 0 && compare(key, arr[j - 1]))
 		{
 			arr[j] = arr[j - 1];
 			--j;

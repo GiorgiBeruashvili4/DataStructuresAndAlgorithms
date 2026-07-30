@@ -13,8 +13,8 @@
 // Stable: No
 // In-place: Yes
 
-template<typename T>
-void SelectionSort(std::vector<T>& arr)
+template<typename T, typename Compare = std::less<T>>
+void SelectionSort(std::vector<T>& arr, Compare compare = Compare())
 {
 	const std::size_t size = arr.size();
 
@@ -23,7 +23,7 @@ void SelectionSort(std::vector<T>& arr)
 		std::size_t minIndex = i;
 		for (std::size_t j = i + 1;j < size;++j)
 		{
-			if (arr[j] < arr[minIndex])
+			if (compare(arr[j], arr[minIndex]))
 			{
 				minIndex = j;
 			}
