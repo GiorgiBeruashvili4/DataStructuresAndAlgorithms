@@ -37,7 +37,11 @@ Input: [5, 3, 4, 6, 8]
 
 Output: [3, 4, 5, 6, 8]
 
+Custom comparator (descending order):
 
+Input: [5, 3, 4, 6, 8], Compare: `std::greater<int>()`
+
+Output: [8, 6, 5, 4, 3]
 
 
 
@@ -82,7 +86,11 @@ Input: [5, 3, 4, 6, 8]
 
 Output: [3, 4, 5, 6, 8]
 
+Custom comparator (descending order):
 
+Input: [5, 3, 4, 6, 8], Compare: `std::greater<int>()`
+
+Output: [8, 6, 5, 4, 3]
 
 
 
@@ -128,3 +136,9 @@ Space complexity: O(1)
 Input: [5, 3, 4, 6, 8]
 
 Output: [3, 4, 5, 6, 8]
+
+Custom comparator (descending order):
+
+Input: [5, 3, 4, 6, 8], Compare: `std::greater<int>()`
+
+Output: [8, 6, 5, 4, 3]
