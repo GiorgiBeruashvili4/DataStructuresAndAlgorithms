@@ -2,6 +2,22 @@
 #include <vector>
 #include <algorithm>
 
+// Quick Sort - Lomuto Partition, Last Element Pivot
+// 
+// Time complexity:
+// Best case: O(n log n)
+// Average case: O(n log n)
+// Worst case: O(n²) -> If array is already sorted or sorted in reverse order
+//
+// Space complexity: O(log n) -> Recursion stack (O(n) worst case)
+// Stable: No
+// In-place: Yes
+//
+// Partitions array using Lomuto method.
+// Uses the last element of the range as the pivot.
+// Elements less than the pivot are moved before it, element greater or equal are moved after it.
+// The pivot ends up placed exactly at the returned index.
+
 namespace LomutoQuickSort_LastPivot
 {
 	template<typename T, typename Compare = std::less<T>>

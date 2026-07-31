@@ -3,6 +3,22 @@
 #include <random>
 #include <algorithm>
 
+// Quick Sort - Lomuto Partition, Random Pivot
+// 
+// Time complexity:
+// Best case: O(n log n)
+// Average case: O(n log n)
+// Worst case: O(n²) -> Very unlikely, since the pivot is different each time
+//
+// Space complexity: O(log n) -> Recursion stack (O(n) worst case)
+// Stable: No
+// In-place: Yes
+//
+// Partitions array using Lomuto method.
+// Picks a random index and uses that element as the pivot.
+// Elements less than the pivot are moved before it, element greater or equal are moved after it.
+// The pivot ends up placed exactly at the returned index.
+
 namespace LomutoQuickSort_RandomPivot
 {
 	template<typename T, typename Compare = std::less<T>>
