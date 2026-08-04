@@ -58,7 +58,7 @@ public:
 	void insert(const T& value, std::size_t index);
 
 	void removeAt(std::size_t index);
-	void removeValue(const T& value);
+	bool removeValue(const T& value);
 
 	bool contains(const T& value) const;
 	std::size_t indexOf(const T& value) const;
@@ -97,7 +97,14 @@ inline List<T>::List()
 
 template<typename T>
 inline List<T>::List(const List& other)
+	: head(nullptr),
+	tail(nullptr),
+	listSize(0)
 {
+	for (const T& value : other)
+	{
+		push_back(value);
+	}
 }
 
 template<typename T>
@@ -109,7 +116,17 @@ inline List<T>::~List()
 template<typename T>
 inline List<T>& List<T>::operator=(const List& other)
 {
-	// TODO: insert return statement here
+	if (this != &other)
+	{
+		clear();
+
+		for (const T& value : other)
+		{
+			push_back(value);
+		}
+	}
+
+	return *this;
 }
 
 template<typename T>
@@ -238,33 +255,152 @@ inline void List<T>::pop_front()
 template<typename T>
 inline void List<T>::insert(const T& value, std::size_t index)
 {
+	if (index > listSize)
+	{
+		throw std::out_of_range("Index out of range");
+	}
+
+	if (index == 0)
+	{
+		push_front(value);
+		return;
+	}
+
+	if (index == listSize)
+	{
+		push_back(value);
+		return;
+	}
+
+	Node* newNode = new Node(value);
+	Node* current = head;
+
+	for (std::size_t i = 0;i < index - 1;i++)
+	{
+		current = current->next;
+	}
+
+	newNode->next = current->next;
+	current->next = newNode;
+
+	++listSize;
 }
 
 template<typename T>
 inline void List<T>::removeAt(std::size_t index)
 {
+	if (index >= listSize)
+	{
+		throw std::out_of_range("Index out of range");
+	}
+
+	if (index == 0)
+	{
+		pop_front();
+		return;
+	}
+
+	if (index == listSize - 1)
+	{
+		pop_back();
+		return;
+	}
+
+	Node* current = head;
+
+	for (std::size_t i = 0;i < index - 1;i++)
+	{
+		current = current->next;
+	}
+
+	Node* temp = current->next;
+	current->next = temp->next;
+	delete temp;
+
+	--listSize;
 }
 
 template<typename T>
-inline void List<T>::removeValue(const T& value)
+inline bool List<T>::removeValue(const T& value)
 {
+	if (empty())
+	{
+		return false;
+	}
+
+	if (head->data == value)
+	{
+		pop_front();
+		return true;
+	}
+
+	Node* current = head;
+	while (current->next != nullptr)
+	{
+		if (current->next->data == value)
+		{
+			Node* temp = current->next;
+			current->next = temp->next;
+
+			if (temp == tail)
+			{
+				tail = current;
+			}
+
+			delete temp;
+			--listSize;
+
+			return true;
+		}
+
+		current = current->next;
+	}
+
+	return false;
 }
 
 template<typename T>
 inline bool List<T>::contains(const T& value) const
 {
-	return false;
+	return indexOf(value) != -1;
 }
 
 template<typename T>
 inline std::size_t List<T>::indexOf(const T& value) const
 {
-	return std::size_t();
+	int index = 0;
+	for (ConstIterator it = begin();it != end();++it, ++index)
+	{
+		if (*it == value)
+		{
+			return index;
+		}
+	}
+
+	return -1;
 }
 
 template<typename T>
 inline void List<T>::reverse()
 {
+	if (empty() || head == tail)
+	{
+		return;
+	}
+
+	Node* previous = nullptr;
+	Node* current = head;
+
+	tail = head;
+	while (current != nullptr)
+	{
+		Node* next = current->next;
+		current->next = previous;
+		previous = current;
+		current = next;
+	}
+
+	head = previous;
 }
 
 template<typename T>
@@ -272,7 +408,7 @@ inline T& List<T>::front()
 {
 	if (empty())
 	{
-		throw std::out_of_range("List is empty")
+		throw std::out_of_range("List is empty");
 	}
 
 	return head->data;
@@ -283,7 +419,7 @@ inline const T& List<T>::front() const
 {
 	if (empty())
 	{
-		throw std::out_of_range("List is empty")
+		throw std::out_of_range("List is empty");
 	}
 
 	return head->data;
@@ -294,7 +430,7 @@ inline T& List<T>::back()
 {
 	if (empty())
 	{
-		throw std::out_of_range("List is empty")
+		throw std::out_of_range("List is empty");
 	}
 
 	return tail->data;
@@ -305,7 +441,7 @@ inline const T& List<T>::back() const
 {
 	if (empty())
 	{
-		throw std::out_of_range("List is empty")
+		throw std::out_of_range("List is empty");
 	}
 
 	return tail->data;
@@ -314,13 +450,35 @@ inline const T& List<T>::back() const
 template<typename T>
 inline T& List<T>::at(std::size_t index)
 {
-	// TODO: insert return statement here
+	if (index >= listSize)
+	{
+		throw std::out_of_range("Index out of range");
+	}
+
+	Node* current = head;
+	for (std::size_t i = 0;i < index;++i)
+	{
+		current = current->next;
+	}
+
+	return current->data;
 }
 
 template<typename T>
 inline const T& List<T>::at(std::size_t index) const
 {
-	// TODO: insert return statement here
+	if (index >= listSize)
+	{
+		throw std::out_of_range("Index out of range");
+	}
+
+	const Node* current = head;
+	for (std::size_t i = 0;i < index;++i)
+	{
+		current = current->next;
+	}
+
+	return current->data;
 }
 
 template<typename T>
