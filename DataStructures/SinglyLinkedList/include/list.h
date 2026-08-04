@@ -40,9 +40,11 @@ public:
 
 	List();
 	List(const List& other);
+	List(List&& other) noexcept;
 	~List();
 
 	List& operator=(const List& other);
+	List& operator=(List&& other) noexcept;
 
 	bool empty() const;
 	std::size_t size() const;
@@ -108,6 +110,17 @@ inline List<T>::List(const List& other)
 }
 
 template<typename T>
+inline List<T>::List(List&& other) noexcept
+	: head(other.head),
+	tail(other.tail),
+	listSize(other.listSize)
+{
+	other.head = nullptr;
+	other.tail = nullptr;
+	other.listSize = 0;
+}
+
+template<typename T>
 inline List<T>::~List()
 {
 	clear();
@@ -124,6 +137,25 @@ inline List<T>& List<T>::operator=(const List& other)
 		{
 			push_back(value);
 		}
+	}
+
+	return *this;
+}
+
+template<typename T>
+inline List<T>& List<T>::operator=(List&& other) noexcept
+{
+	if (this != &other)
+	{
+		clear();
+
+		head = other.head;
+		tail = other.tail;
+		listSize = other.listSize;
+
+		other.head = nullptr;
+		other.tail = nullptr;
+		other.listSize = 0;
 	}
 
 	return *this;
