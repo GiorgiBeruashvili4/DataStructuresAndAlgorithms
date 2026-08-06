@@ -116,6 +116,12 @@ inline void BST<T>::insertIterative(const T& value)
 }
 
 template<typename T>
+inline bool BST<T>::removeIterative(const T& value)
+{
+	return removeIterative(root, value);
+}
+
+template<typename T>
 inline bool BST<T>::containsIterative(const T& value) const
 {
 	return containsIterative(root, value);
@@ -268,6 +274,81 @@ inline void BST<T>::insertIterative(Node*& node, const T& value)
 	{
 		parent->right = current;
 	}
+}
+
+template<typename T>
+inline bool BST<T>::removeIterative(Node*& node, const T& value)
+{
+	Node* current = node;
+	Node* parent = nullptr;
+
+	while (current != nullptr)
+	{
+		parent = current;
+		if (value < current->data)
+		{
+			current = current->left;
+		}
+		else if (current->data < value)
+		{
+			current = current->right;
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	if (current == nullptr)
+	{
+		return false;
+	}
+
+	// two children case
+	if (current->left != nullptr && current->right != nullptr)
+	{
+		Node* successor = current->left;
+		Node* successorParent = current;
+
+		while (successor->right != nullptr)
+		{
+			successorParent = successor;
+			successor = successor->right;
+		}
+
+		current->data = successor->data;
+
+		if (successorParent->right == successor)
+		{
+			successorParent->right = successor->left;
+		}
+		else
+		{
+			successorParent->left = successor->left;
+		}
+
+		delete successor;
+		return true;
+	}
+
+	// zero or one child case
+	Node* child = (current->left != nullptr) ? current->left : current->right;
+
+	if (parent == nullptr)
+	{
+		node = child;
+	}
+	else if (parent->left == current)
+	{
+		parent->left = child;
+	}
+	else
+	{
+		parent->right = child;
+	}
+
+	delete current;
+	return true;
 }
 
 template<typename T>
