@@ -134,6 +134,12 @@ inline void BST<T>::insertRecursive(const T& value)
 }
 
 template<typename T>
+inline bool BST<T>::removeRecursive(const T& value)
+{
+	return removeRecursive(root, value);
+}
+
+template<typename T>
 inline bool BST<T>::containsRecursive(const T& value) const
 {
 	return containsRecursive(root, value);
@@ -395,6 +401,45 @@ inline void BST<T>::insertRecursive(Node*& node, const T& value)
 	{
 		return;
 	}
+}
+
+template<typename T>
+inline bool BST<T>::removeRecursive(Node*& node, const T& value)
+{
+	if (node == nullptr)
+	{
+		return false;
+	}
+
+	if (value < node->data)
+	{
+		return removeRecursive(node->left, value);
+	}
+	else if (node->data < value)
+	{
+		return removeRecursive(node->right, value);
+	}
+
+	if (node->left != nullptr && node->right != nullptr)
+	{
+		Node* successor = node->left;
+
+		while (successor->right != nullptr)
+		{
+			successor = successor->right;
+		}
+
+		node->data = successor->data;
+
+		return removeRecursive(node->left, successor->data);
+	}
+
+	Node* toDelete = node;
+	node = (node->left != nullptr) ? node->left : node->right;
+	
+	delete toDelete;
+	
+	return true;
 }
 
 template<typename T>
