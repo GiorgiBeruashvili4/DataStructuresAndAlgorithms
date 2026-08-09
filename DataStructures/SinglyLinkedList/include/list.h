@@ -63,7 +63,7 @@ public:
 	bool removeValue(const T& value);
 
 	bool contains(const T& value) const;
-	std::size_t indexOf(const T& value) const;
+	int indexOf(const T& value) const;
 
 	void reverse();
 
@@ -398,7 +398,7 @@ inline bool List<T>::contains(const T& value) const
 }
 
 template<typename T>
-inline std::size_t List<T>::indexOf(const T& value) const
+inline int List<T>::indexOf(const T& value) const
 {
 	int index = 0;
 	for (ConstIterator it = begin();it != end();++it, ++index)
