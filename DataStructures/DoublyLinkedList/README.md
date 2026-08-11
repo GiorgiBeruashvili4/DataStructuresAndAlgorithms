@@ -7,7 +7,7 @@ A generic doubly linked list implementation.
 - `List<T>` template - works with any data type.
 - Dynamic size - grows and shrinks as elements are added/removed.
 - Rule-of-five - copy constructor, move constructor, copy assignment, move assignments, destructor
-- Forward iterator (`begin()` / `end()`), including `const` iteration and range-base `for` loops.
+- Forward iterator (`begin()` / `end()`), including `const` iteration and range-based `for` loops.
 
 ## Time Complexity
 
@@ -21,7 +21,7 @@ A generic doubly linked list implementation.
 | `at(index)` | O(n) worst case | walks from nearer end |
 | `insert` / `removeAt` | O(n) | walks to the target index |
 | `contains` / `indexOf` | O(n) | linear scan |
-| `reverse` | O(n) | swaps `nest`/`previous` on every node, then swaps `head`/`tail` |
+| `reverse` | O(n) | swaps `next`/`previous` on every node, then swaps `head`/`tail` |
 | `clear` / destructor | O(n) | deletes every node |
 | copy constructor / copy assignment | O(n) | deep copy |
 
