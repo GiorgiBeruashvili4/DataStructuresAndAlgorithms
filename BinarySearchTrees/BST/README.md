@@ -37,7 +37,7 @@ iterative and recursive variants of core operations.
 | `removeIterative(const T& value)` | Removes a value iteratively; returns `true` if found and removed |
 | `removeRecursive(const T& value)` | Removes a value recursively; returns `true` if found and removed |
 
-Both use the **in-order successor** strategy for nodes with two children.
+Both use the **in-order predecessor** strategy for nodes with two children.
 
 ### Search
 | Method | Description |
