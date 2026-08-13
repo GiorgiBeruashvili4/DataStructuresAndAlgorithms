@@ -3,7 +3,7 @@
 #include <ostream>
 
 template<typename T>
-class List
+class SinglyLinkedList
 {
 private:
 	struct Node
@@ -38,13 +38,13 @@ public:
 		const Node* current;
 	};
 
-	List();
-	List(const List& other);
-	List(List&& other) noexcept;
-	~List();
+	SinglyLinkedList();
+	SinglyLinkedList(const SinglyLinkedList& other);
+	SinglyLinkedList(SinglyLinkedList&& other) noexcept;
+	~SinglyLinkedList();
 
-	List& operator=(const List& other);
-	List& operator=(List&& other) noexcept;
+	SinglyLinkedList& operator=(const SinglyLinkedList& other);
+	SinglyLinkedList& operator=(SinglyLinkedList&& other) noexcept;
 
 	bool empty() const;
 	std::size_t size() const;
@@ -90,7 +90,7 @@ private:
 
 // List
 template<typename T>
-inline List<T>::List()
+inline SinglyLinkedList<T>::SinglyLinkedList()
 	: head(nullptr),
 	tail(nullptr),
 	listSize(0)
@@ -98,7 +98,7 @@ inline List<T>::List()
 }
 
 template<typename T>
-inline List<T>::List(const List& other)
+inline SinglyLinkedList<T>::SinglyLinkedList(const SinglyLinkedList& other)
 	: head(nullptr),
 	tail(nullptr),
 	listSize(0)
@@ -110,7 +110,7 @@ inline List<T>::List(const List& other)
 }
 
 template<typename T>
-inline List<T>::List(List&& other) noexcept
+inline SinglyLinkedList<T>::SinglyLinkedList(SinglyLinkedList&& other) noexcept
 	: head(other.head),
 	tail(other.tail),
 	listSize(other.listSize)
@@ -121,13 +121,13 @@ inline List<T>::List(List&& other) noexcept
 }
 
 template<typename T>
-inline List<T>::~List()
+inline SinglyLinkedList<T>::~SinglyLinkedList()
 {
 	clear();
 }
 
 template<typename T>
-inline List<T>& List<T>::operator=(const List& other)
+inline SinglyLinkedList<T>& SinglyLinkedList<T>::operator=(const SinglyLinkedList& other)
 {
 	if (this != &other)
 	{
@@ -143,7 +143,7 @@ inline List<T>& List<T>::operator=(const List& other)
 }
 
 template<typename T>
-inline List<T>& List<T>::operator=(List&& other) noexcept
+inline SinglyLinkedList<T>& SinglyLinkedList<T>::operator=(SinglyLinkedList&& other) noexcept
 {
 	if (this != &other)
 	{
@@ -162,19 +162,19 @@ inline List<T>& List<T>::operator=(List&& other) noexcept
 }
 
 template<typename T>
-inline bool List<T>::empty() const
+inline bool SinglyLinkedList<T>::empty() const
 {
 	return listSize == 0;
 }
 
 template<typename T>
-inline std::size_t List<T>::size() const
+inline std::size_t SinglyLinkedList<T>::size() const
 {
 	return listSize;
 }
 
 template<typename T>
-inline void List<T>::clear()
+inline void SinglyLinkedList<T>::clear()
 {
 	Node* current = head;
 
@@ -191,7 +191,7 @@ inline void List<T>::clear()
 }
 
 template<typename T>
-inline void List<T>::push_back(const T& value)
+inline void SinglyLinkedList<T>::push_back(const T& value)
 {
 	Node* newNode = new Node(value);
 
@@ -210,7 +210,7 @@ inline void List<T>::push_back(const T& value)
 }
 
 template<typename T>
-inline void List<T>::push_front(const T& value)
+inline void SinglyLinkedList<T>::push_front(const T& value)
 {
 	Node* newNode = new Node(value);
 
@@ -229,7 +229,7 @@ inline void List<T>::push_front(const T& value)
 }
 
 template<typename T>
-inline void List<T>::pop_back()
+inline void SinglyLinkedList<T>::pop_back()
 {
 	if (empty())
 	{
@@ -260,7 +260,7 @@ inline void List<T>::pop_back()
 }
 
 template<typename T>
-inline void List<T>::pop_front()
+inline void SinglyLinkedList<T>::pop_front()
 {
 	if (empty())
 	{
@@ -285,7 +285,7 @@ inline void List<T>::pop_front()
 }
 
 template<typename T>
-inline void List<T>::insert(const T& value, std::size_t index)
+inline void SinglyLinkedList<T>::insert(const T& value, std::size_t index)
 {
 	if (index > listSize)
 	{
@@ -319,7 +319,7 @@ inline void List<T>::insert(const T& value, std::size_t index)
 }
 
 template<typename T>
-inline void List<T>::removeAt(std::size_t index)
+inline void SinglyLinkedList<T>::removeAt(std::size_t index)
 {
 	if (index >= listSize)
 	{
@@ -353,7 +353,7 @@ inline void List<T>::removeAt(std::size_t index)
 }
 
 template<typename T>
-inline bool List<T>::removeValue(const T& value)
+inline bool SinglyLinkedList<T>::removeValue(const T& value)
 {
 	if (empty())
 	{
@@ -392,13 +392,13 @@ inline bool List<T>::removeValue(const T& value)
 }
 
 template<typename T>
-inline bool List<T>::contains(const T& value) const
+inline bool SinglyLinkedList<T>::contains(const T& value) const
 {
 	return indexOf(value) != -1;
 }
 
 template<typename T>
-inline int List<T>::indexOf(const T& value) const
+inline int SinglyLinkedList<T>::indexOf(const T& value) const
 {
 	int index = 0;
 	for (ConstIterator it = begin();it != end();++it, ++index)
@@ -413,7 +413,7 @@ inline int List<T>::indexOf(const T& value) const
 }
 
 template<typename T>
-inline void List<T>::reverse()
+inline void SinglyLinkedList<T>::reverse()
 {
 	if (empty() || head == tail)
 	{
@@ -436,7 +436,7 @@ inline void List<T>::reverse()
 }
 
 template<typename T>
-inline T& List<T>::front()
+inline T& SinglyLinkedList<T>::front()
 {
 	if (empty())
 	{
@@ -447,7 +447,7 @@ inline T& List<T>::front()
 }
 
 template<typename T>
-inline const T& List<T>::front() const
+inline const T& SinglyLinkedList<T>::front() const
 {
 	if (empty())
 	{
@@ -458,7 +458,7 @@ inline const T& List<T>::front() const
 }
 
 template<typename T>
-inline T& List<T>::back()
+inline T& SinglyLinkedList<T>::back()
 {
 	if (empty())
 	{
@@ -469,7 +469,7 @@ inline T& List<T>::back()
 }
 
 template<typename T>
-inline const T& List<T>::back() const
+inline const T& SinglyLinkedList<T>::back() const
 {
 	if (empty())
 	{
@@ -480,7 +480,7 @@ inline const T& List<T>::back() const
 }
 
 template<typename T>
-inline T& List<T>::at(std::size_t index)
+inline T& SinglyLinkedList<T>::at(std::size_t index)
 {
 	if (index >= listSize)
 	{
@@ -497,7 +497,7 @@ inline T& List<T>::at(std::size_t index)
 }
 
 template<typename T>
-inline const T& List<T>::at(std::size_t index) const
+inline const T& SinglyLinkedList<T>::at(std::size_t index) const
 {
 	if (index >= listSize)
 	{
@@ -514,25 +514,25 @@ inline const T& List<T>::at(std::size_t index) const
 }
 
 template<typename T>
-inline List<T>::Iterator List<T>::begin()
+inline SinglyLinkedList<T>::Iterator SinglyLinkedList<T>::begin()
 {
 	return Iterator(head);
 }
 
 template<typename T>
-inline List<T>::Iterator List<T>::end()
+inline SinglyLinkedList<T>::Iterator SinglyLinkedList<T>::end()
 {
 	return Iterator(nullptr);
 }
 
 template<typename T>
-inline List<T>::ConstIterator List<T>::begin() const
+inline SinglyLinkedList<T>::ConstIterator SinglyLinkedList<T>::begin() const
 {
 	return ConstIterator(head);
 }
 
 template<typename T>
-inline List<T>::ConstIterator List<T>::end() const
+inline SinglyLinkedList<T>::ConstIterator SinglyLinkedList<T>::end() const
 {
 	return ConstIterator(nullptr);
 }
@@ -540,32 +540,32 @@ inline List<T>::ConstIterator List<T>::end() const
 
 // Iterator
 template<typename T>
-inline List<T>::Iterator::Iterator(Node* node)
+inline SinglyLinkedList<T>::Iterator::Iterator(Node* node)
 	: current(node)
 {
 }
 
 template<typename T>
-inline T& List<T>::Iterator::operator*() const
+inline T& SinglyLinkedList<T>::Iterator::operator*() const
 {
 	return current->data;
 }
 
 template<typename T>
-inline List<T>::Iterator& List<T>::Iterator::operator++()
+inline SinglyLinkedList<T>::Iterator& SinglyLinkedList<T>::Iterator::operator++()
 {
 	current = current->next;
 	return *this;
 }
 
 template<typename T>
-inline bool List<T>::Iterator::operator!=(const Iterator& other) const
+inline bool SinglyLinkedList<T>::Iterator::operator!=(const Iterator& other) const
 {
 	return current != other.current;
 }
 
 template<typename T>
-inline bool List<T>::Iterator::operator==(const Iterator& other) const
+inline bool SinglyLinkedList<T>::Iterator::operator==(const Iterator& other) const
 {
 	return current == other.current;
 }
@@ -573,32 +573,32 @@ inline bool List<T>::Iterator::operator==(const Iterator& other) const
 
 // ConstIterator
 template<typename T>
-inline List<T>::ConstIterator::ConstIterator(const Node* node)
+inline SinglyLinkedList<T>::ConstIterator::ConstIterator(const Node* node)
 	: current(node)
 {
 }
 
 template<typename T>
-inline const T& List<T>::ConstIterator::operator*() const
+inline const T& SinglyLinkedList<T>::ConstIterator::operator*() const
 {
 	return current->data;
 }
 
 template<typename T>
-inline List<T>::ConstIterator& List<T>::ConstIterator::operator++()
+inline SinglyLinkedList<T>::ConstIterator& SinglyLinkedList<T>::ConstIterator::operator++()
 {
 	current = current->next;
 	return *this;
 }
 
 template<typename T>
-inline bool List<T>::ConstIterator::operator!=(const ConstIterator& other) const
+inline bool SinglyLinkedList<T>::ConstIterator::operator!=(const ConstIterator& other) const
 {
 	return current != other.current;
 }
 
 template<typename T>
-inline bool List<T>::ConstIterator::operator==(const ConstIterator& other) const
+inline bool SinglyLinkedList<T>::ConstIterator::operator==(const ConstIterator& other) const
 {
 	return current == other.current;
 }
