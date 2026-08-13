@@ -3,7 +3,7 @@
 #include <ostream>
 
 template <typename T>
-class List
+class DoublyLinkedList
 {
 private:
 	struct Node
@@ -39,13 +39,13 @@ public:
 		const Node* current;
 	};
 
-	List();
-	List(const List& other);
-	List(List&& other) noexcept;
-	~List();
+	DoublyLinkedList();
+	DoublyLinkedList(const DoublyLinkedList& other);
+	DoublyLinkedList(DoublyLinkedList&& other) noexcept;
+	~DoublyLinkedList();
 
-	List& operator=(const List& other);
-	List& operator=(List&& other) noexcept;
+	DoublyLinkedList& operator=(const DoublyLinkedList& other);
+	DoublyLinkedList& operator=(DoublyLinkedList&& other) noexcept;
 
 	bool empty() const;
 	std::size_t size() const;
@@ -91,7 +91,7 @@ private:
 
 // list
 template<typename T>
-inline List<T>::List()
+inline DoublyLinkedList<T>::DoublyLinkedList()
 	:head(nullptr),
 	tail(nullptr),
 	listSize(0)
@@ -99,7 +99,7 @@ inline List<T>::List()
 }
 
 template<typename T>
-inline List<T>::List(const List& other)
+inline DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList& other)
 	:head(nullptr),
 	tail(nullptr),
 	listSize(0)
@@ -111,7 +111,7 @@ inline List<T>::List(const List& other)
 }
 
 template<typename T>
-inline List<T>::List(List&& other) noexcept
+inline DoublyLinkedList<T>::DoublyLinkedList(DoublyLinkedList&& other) noexcept
 	:head(other.head),
 	tail(other.tail),
 	listSize(other.listSize)
@@ -122,13 +122,13 @@ inline List<T>::List(List&& other) noexcept
 }
 
 template<typename T>
-inline List<T>::~List()
+inline DoublyLinkedList<T>::~DoublyLinkedList()
 {
 	clear();
 }
 
 template<typename T>
-inline List<T>& List<T>::operator=(const List& other)
+inline DoublyLinkedList<T>& DoublyLinkedList<T>::operator=(const DoublyLinkedList& other)
 {
 	if (this != &other)
 	{
@@ -144,7 +144,7 @@ inline List<T>& List<T>::operator=(const List& other)
 }
 
 template<typename T>
-inline List<T>& List<T>::operator=(List&& other) noexcept
+inline DoublyLinkedList<T>& DoublyLinkedList<T>::operator=(DoublyLinkedList&& other) noexcept
 {
 	if (this != &other)
 	{
@@ -163,19 +163,19 @@ inline List<T>& List<T>::operator=(List&& other) noexcept
 }
 
 template<typename T>
-inline bool List<T>::empty() const
+inline bool DoublyLinkedList<T>::empty() const
 {
 	return listSize == 0;
 }
 
 template<typename T>
-inline std::size_t List<T>::size() const
+inline std::size_t DoublyLinkedList<T>::size() const
 {
 	return listSize;
 }
 
 template<typename T>
-inline void List<T>::clear()
+inline void DoublyLinkedList<T>::clear()
 {
 	Node* current = head;
 
@@ -192,7 +192,7 @@ inline void List<T>::clear()
 }
 
 template<typename T>
-inline void List<T>::push_front(const T& value)
+inline void DoublyLinkedList<T>::push_front(const T& value)
 {
 	Node* newNode = new Node(value);
 
@@ -212,7 +212,7 @@ inline void List<T>::push_front(const T& value)
 }
 
 template<typename T>
-inline void List<T>::push_back(const T& value)
+inline void DoublyLinkedList<T>::push_back(const T& value)
 {
 	Node* newNode = new Node(value);
 
@@ -233,7 +233,7 @@ inline void List<T>::push_back(const T& value)
 }
 
 template<typename T>
-inline void List<T>::pop_front()
+inline void DoublyLinkedList<T>::pop_front()
 {
 	if (empty())
 	{
@@ -259,7 +259,7 @@ inline void List<T>::pop_front()
 }
 
 template<typename T>
-inline void List<T>::pop_back()
+inline void DoublyLinkedList<T>::pop_back()
 {
 	if (empty())
 	{
@@ -285,7 +285,7 @@ inline void List<T>::pop_back()
 }
 
 template<typename T>
-inline void List<T>::insert(const T& value, std::size_t index)
+inline void DoublyLinkedList<T>::insert(const T& value, std::size_t index)
 {
 	if (index > listSize)
 	{
@@ -323,7 +323,7 @@ inline void List<T>::insert(const T& value, std::size_t index)
 }
 
 template<typename T>
-inline void List<T>::removeAt(std::size_t index)
+inline void DoublyLinkedList<T>::removeAt(std::size_t index)
 {
 	if (index >= listSize)
 	{
@@ -358,7 +358,7 @@ inline void List<T>::removeAt(std::size_t index)
 }
 
 template<typename T>
-inline bool List<T>::removeValue(const T& value)
+inline bool DoublyLinkedList<T>::removeValue(const T& value)
 {
 	if (empty())
 	{
@@ -401,13 +401,13 @@ inline bool List<T>::removeValue(const T& value)
 }
 
 template<typename T>
-inline bool List<T>::contains(const T& value) const
+inline bool DoublyLinkedList<T>::contains(const T& value) const
 {
 	return indexOf(value) != -1;
 }
 
 template<typename T>
-inline int List<T>::indexOf(const T& value) const
+inline int DoublyLinkedList<T>::indexOf(const T& value) const
 {
 	int index = 0;
 	for (ConstIterator it = begin();it != end();++it, ++index)
@@ -422,7 +422,7 @@ inline int List<T>::indexOf(const T& value) const
 }
 
 template<typename T>
-inline void List<T>::reverse()
+inline void DoublyLinkedList<T>::reverse()
 {
 	if (empty() || head == tail)
 	{
@@ -444,7 +444,7 @@ inline void List<T>::reverse()
 }
 
 template<typename T>
-inline T& List<T>::front()
+inline T& DoublyLinkedList<T>::front()
 {
 	if (empty())
 	{
@@ -455,7 +455,7 @@ inline T& List<T>::front()
 }
 
 template<typename T>
-inline const T& List<T>::front() const
+inline const T& DoublyLinkedList<T>::front() const
 {
 	if (empty())
 	{
@@ -466,7 +466,7 @@ inline const T& List<T>::front() const
 }
 
 template<typename T>
-inline T& List<T>::back()
+inline T& DoublyLinkedList<T>::back()
 {
 	if (empty())
 	{
@@ -477,7 +477,7 @@ inline T& List<T>::back()
 }
 
 template<typename T>
-inline const T& List<T>::back() const
+inline const T& DoublyLinkedList<T>::back() const
 {
 	if (empty())
 	{
@@ -488,7 +488,7 @@ inline const T& List<T>::back() const
 }
 
 template<typename T>
-inline T& List<T>::at(std::size_t index)
+inline T& DoublyLinkedList<T>::at(std::size_t index)
 {
 	if (index >= listSize)
 	{
@@ -518,7 +518,7 @@ inline T& List<T>::at(std::size_t index)
 }
 
 template<typename T>
-inline const T& List<T>::at(std::size_t index) const
+inline const T& DoublyLinkedList<T>::at(std::size_t index) const
 {
 	if (index >= listSize)
 	{
@@ -548,25 +548,25 @@ inline const T& List<T>::at(std::size_t index) const
 }
 
 template<typename T>
-inline typename List<T>::Iterator List<T>::begin()
+inline typename DoublyLinkedList<T>::Iterator DoublyLinkedList<T>::begin()
 {
 	return Iterator(head);
 }
 
 template<typename T>
-inline typename List<T>::Iterator List<T>::end()
+inline typename DoublyLinkedList<T>::Iterator DoublyLinkedList<T>::end()
 {
 	return Iterator(nullptr);
 }
 
 template<typename T>
-inline typename List<T>::ConstIterator List<T>::begin() const
+inline typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::begin() const
 {
 	return ConstIterator(head);
 }
 
 template<typename T>
-inline typename List<T>::ConstIterator List<T>::end() const
+inline typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::end() const
 {
 	return ConstIterator(nullptr);
 }
@@ -574,32 +574,32 @@ inline typename List<T>::ConstIterator List<T>::end() const
 
 // Iterator
 template<typename T>
-inline List<T>::Iterator::Iterator(Node* node)
+inline DoublyLinkedList<T>::Iterator::Iterator(Node* node)
 	:current(node)
 {
 }
 
 template<typename T>
-inline T& List<T>::Iterator::operator*() const
+inline T& DoublyLinkedList<T>::Iterator::operator*() const
 {
 	return current->data;
 }
 
 template<typename T>
-inline typename List<T>::Iterator& List<T>::Iterator::operator++()
+inline typename DoublyLinkedList<T>::Iterator& DoublyLinkedList<T>::Iterator::operator++()
 {
 	current = current->next;
 	return *this;
 }
 
 template<typename T>
-inline bool List<T>::Iterator::operator!=(const Iterator& other) const
+inline bool DoublyLinkedList<T>::Iterator::operator!=(const Iterator& other) const
 {
 	return current != other.current;
 }
 
 template<typename T>
-inline bool List<T>::Iterator::operator==(const Iterator& other) const
+inline bool DoublyLinkedList<T>::Iterator::operator==(const Iterator& other) const
 {
 	return current == other.current;
 }
@@ -607,32 +607,32 @@ inline bool List<T>::Iterator::operator==(const Iterator& other) const
 
 // ConstIterator
 template<typename T>
-inline List<T>::ConstIterator::ConstIterator(const Node* node)
+inline DoublyLinkedList<T>::ConstIterator::ConstIterator(const Node* node)
 	:current(node)
 {
 }
 
 template<typename T>
-inline const T& List<T>::ConstIterator::operator*() const
+inline const T& DoublyLinkedList<T>::ConstIterator::operator*() const
 {
 	return current->data;
 }
 
 template<typename T>
-inline typename List<T>::ConstIterator& List<T>::ConstIterator::operator++()
+inline typename DoublyLinkedList<T>::ConstIterator& DoublyLinkedList<T>::ConstIterator::operator++()
 {
 	current = current->next;
 	return *this;
 }
 
 template<typename T>
-inline bool List<T>::ConstIterator::operator!=(const ConstIterator& other) const
+inline bool DoublyLinkedList<T>::ConstIterator::operator!=(const ConstIterator& other) const
 {
 	return current != other.current;
 }
 
 template<typename T>
-inline bool List<T>::ConstIterator::operator==(const ConstIterator& other) const
+inline bool DoublyLinkedList<T>::ConstIterator::operator==(const ConstIterator& other) const
 {
 	return current == other.current;
 }
