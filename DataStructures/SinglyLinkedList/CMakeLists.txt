@@ -5,10 +5,11 @@ project(SinglyLinkedList)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(SinglyLinkedList
-    src/main.cpp
-)
+add_library(SinglyLinkedList INTERFACE)
 
 target_include_directories(
-    SinglyLinkedList PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
+    SinglyLinkedList INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+enable_testing()
+add_subdirectory(tests)
