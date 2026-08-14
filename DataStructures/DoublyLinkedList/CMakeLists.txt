@@ -5,10 +5,11 @@ project(DoublyLinkedList)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(DoublyLinkedList
-    src/main.cpp
-)
+add_library(DoublyLinkedList INTERFACE)
 
 target_include_directories(
-    DoublyLinkedList PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
+    DoublyLinkedList INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+enable_testing()
+add_subdirectory(tests)
