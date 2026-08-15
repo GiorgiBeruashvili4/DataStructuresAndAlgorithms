@@ -63,8 +63,7 @@ DataStructuresAndAlgorithms/
 | `InsertionSort.h` | O(n²) comparison sort, stable |
 | `SelectionSort.h` | O(n²) comparison sort, not stable |
 | `MergeSort.h` | O(n log n), stable, extra O(n) space |
-| `HoarePartition_*.h` / `LomutoPartition_*.h` | Six QuickSort variants comparing 
-Hoare and Lomuto partition schemes with different pivot-selection strategies - see `docs/QuickSort.md` |
+| `HoarePartition_*.h` / `LomutoPartition_*.h` | Six QuickSort variants comparing Hoare and Lomuto partition schemes with different pivot-selection strategies - see `docs/QuickSort.md` |
 
 ## Building & Testing
 
