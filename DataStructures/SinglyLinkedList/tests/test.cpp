@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
-#include "list.h"
+#include "../include/list.h"
 #include <stdexcept>
 
 TEST(SinglyLinkedListTest, PushBack)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -17,7 +17,7 @@ TEST(SinglyLinkedListTest, PushBack)
 
 TEST(SinglyLinkedListTest, PushFront)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_front(1);
 	l.push_front(2);
@@ -30,7 +30,7 @@ TEST(SinglyLinkedListTest, PushFront)
 
 TEST(SinglyLinkedListTest, PopBack)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -44,7 +44,7 @@ TEST(SinglyLinkedListTest, PopBack)
 
 TEST(SinglyLinkedListTest, PopFront)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_front(1);
 	l.push_front(2);
@@ -58,7 +58,7 @@ TEST(SinglyLinkedListTest, PopFront)
 
 TEST(SinglyLinkedListTest, Empty)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	EXPECT_TRUE(l.empty());
 	EXPECT_EQ(l.size(), 0);
@@ -70,7 +70,7 @@ TEST(SinglyLinkedListTest, Empty)
 
 TEST(SinglyLinkedListTest, Insert)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -84,7 +84,7 @@ TEST(SinglyLinkedListTest, Insert)
 
 TEST(SinglyLinkedListTest, RemoveAt)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -99,7 +99,7 @@ TEST(SinglyLinkedListTest, RemoveAt)
 
 TEST(SinglyLinkedListTest, RemoveValue)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -112,7 +112,7 @@ TEST(SinglyLinkedListTest, RemoveValue)
 
 TEST(SinglyLinkedListTest, ContainsAndIndexOf)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -126,7 +126,7 @@ TEST(SinglyLinkedListTest, ContainsAndIndexOf)
 
 TEST(SinglyLinkedListTest, Reverse)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -140,7 +140,7 @@ TEST(SinglyLinkedListTest, Reverse)
 
 TEST(SinglyLinkedListTest, At)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -153,7 +153,7 @@ TEST(SinglyLinkedListTest, At)
 
 TEST(SinglyLinkedListTest, Clear)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -167,14 +167,14 @@ TEST(SinglyLinkedListTest, Clear)
 
 TEST(SinglyLinkedListTest, PopFrontOnEmptyThrows)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	EXPECT_THROW(l.pop_front(), std::out_of_range);
 }
 
 TEST(SinglyLinkedListTest, AtOutOfRangeThrows)
 {
-	SinglyLinkedList<int> l;
+	dsa::SinglyLinkedList<int> l;
 
 	EXPECT_THROW(l.at(5), std::out_of_range);
 }

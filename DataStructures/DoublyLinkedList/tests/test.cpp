@@ -4,7 +4,7 @@
 
 TEST(DoublyLinkedListTest, PushBack)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -17,7 +17,7 @@ TEST(DoublyLinkedListTest, PushBack)
 
 TEST(DoublyLinkedListTest, PushFront)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_front(1);
 	l.push_front(2);
@@ -30,7 +30,7 @@ TEST(DoublyLinkedListTest, PushFront)
 
 TEST(DoublyLinkedListTest, PopBack)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -44,7 +44,7 @@ TEST(DoublyLinkedListTest, PopBack)
 
 TEST(DoublyLinkedListTest, PopFront)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_front(1);
 	l.push_front(2);
@@ -58,7 +58,7 @@ TEST(DoublyLinkedListTest, PopFront)
 
 TEST(DoublyLinkedListTest, Empty)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	EXPECT_TRUE(l.empty());
 	EXPECT_EQ(l.size(), 0);
@@ -70,7 +70,7 @@ TEST(DoublyLinkedListTest, Empty)
 
 TEST(DoublyLinkedListTest, Insert)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -84,7 +84,7 @@ TEST(DoublyLinkedListTest, Insert)
 
 TEST(DoublyLinkedListTest, RemoveAt)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -99,7 +99,7 @@ TEST(DoublyLinkedListTest, RemoveAt)
 
 TEST(DoublyLinkedListTest, RemoveValue)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -112,7 +112,7 @@ TEST(DoublyLinkedListTest, RemoveValue)
 
 TEST(DoublyLinkedListTest, ContainsAndIndexOf)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -126,7 +126,7 @@ TEST(DoublyLinkedListTest, ContainsAndIndexOf)
 
 TEST(DoublyLinkedListTest, Reverse)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -140,7 +140,7 @@ TEST(DoublyLinkedListTest, Reverse)
 
 TEST(DoublyLinkedListTest, At)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -153,7 +153,7 @@ TEST(DoublyLinkedListTest, At)
 
 TEST(DoublyLinkedListTest, Clear)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -167,21 +167,21 @@ TEST(DoublyLinkedListTest, Clear)
 
 TEST(DoublyLinkedListTest, PopFrontOnEmptyThrows)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	EXPECT_THROW(l.pop_front(), std::out_of_range);
 }
 
 TEST(DoublyLinkedListTest, AtOutOfRangeThrows)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	EXPECT_THROW(l.at(5), std::out_of_range);
 }
 
 TEST(DoublyLinkedListTest, DoubleReverseRestoresOrder)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);
@@ -199,7 +199,7 @@ TEST(DoublyLinkedListTest, DoubleReverseRestoresOrder)
 
 TEST(DoublyLinkedListTest, PopBackAfterReverse)
 {
-	DoublyLinkedList<int> l;
+	dsa::DoublyLinkedList<int> l;
 
 	l.push_back(1);
 	l.push_back(2);

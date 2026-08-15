@@ -18,70 +18,73 @@
 // Elements less than the pivot are moved before it, element greater or equal are moved after it.
 // The pivot ends up placed exactly at the returned index.
 
-namespace LomutoQuickSort_MedianOfThree
+namespace dsa
 {
-	template<typename T, typename Compare = std::less<T>>
-	std::size_t Partition(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
+	namespace LomutoQuickSort_MedianOfThree
 	{
-		std::size_t mid = start + (end - start) / 2;
+		template<typename T, typename Compare = std::less<T>>
+		std::size_t Partition(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
+		{
+			std::size_t mid = start + (end - start) / 2;
 
-		if (compare(arr[mid], arr[start]))
-		{
-			std::swap(arr[mid], arr[start]);
-		}
-		if (compare(arr[end], arr[start]))
-		{
-			std::swap(arr[end], arr[start]);
-		}
-		if (compare(arr[end], arr[mid]))
-		{
-			std::swap(arr[end], arr[mid]);
-		}
-
-		T pivot = arr[mid];
-		std::swap(arr[mid], arr[end]);
-
-		std::size_t j = start;
-		for (std::size_t i = start;i < end;++i)
-		{
-			if (compare(arr[i], pivot))
+			if (compare(arr[mid], arr[start]))
 			{
-				std::swap(arr[i], arr[j]);
-				++j;
+				std::swap(arr[mid], arr[start]);
 			}
+			if (compare(arr[end], arr[start]))
+			{
+				std::swap(arr[end], arr[start]);
+			}
+			if (compare(arr[end], arr[mid]))
+			{
+				std::swap(arr[end], arr[mid]);
+			}
+
+			T pivot = arr[mid];
+			std::swap(arr[mid], arr[end]);
+
+			std::size_t j = start;
+			for (std::size_t i = start;i < end;++i)
+			{
+				if (compare(arr[i], pivot))
+				{
+					std::swap(arr[i], arr[j]);
+					++j;
+				}
+			}
+
+			std::swap(arr[j], arr[end]);
+
+			return j;
 		}
 
-		std::swap(arr[j], arr[end]);
-
-		return j;
-	}
-
-	template<typename T, typename Compare = std::less<T>>
-	void QuickSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
-	{
-		if (end <= start)
+		template<typename T, typename Compare = std::less<T>>
+		void QuickSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
 		{
-			return;
+			if (end <= start)
+			{
+				return;
+			}
+
+			std::size_t pivotIndex = Partition(arr, start, end, compare);
+
+			if (start < pivotIndex)
+			{
+				QuickSort(arr, start, pivotIndex - 1, compare);
+			}
+
+			QuickSort(arr, pivotIndex + 1, end, compare);
 		}
 
-		std::size_t pivotIndex = Partition(arr, start, end, compare);
-
-		if (start < pivotIndex)
+		template<typename T, typename Compare = std::less<T>>
+		void QuickSort(std::vector<T>& arr, Compare compare = Compare())
 		{
-			QuickSort(arr, start, pivotIndex - 1, compare);
+			if (arr.empty())
+			{
+				return;
+			}
+
+			QuickSort(arr, 0, arr.size() - 1, compare);
 		}
-
-		QuickSort(arr, pivotIndex + 1, end, compare);
-	}
-
-	template<typename T, typename Compare = std::less<T>>
-	void QuickSort(std::vector<T>& arr, Compare compare = Compare())
-	{
-		if (arr.empty())
-		{
-			return;
-		}
-
-		QuickSort(arr, 0, arr.size() - 1, compare);
 	}
 }

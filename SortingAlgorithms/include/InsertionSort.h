@@ -12,22 +12,25 @@
 // Stable: Yes
 // In-place: Yes
 
-template<typename T, typename Compare = std::less<T>>
-void InsertionSort(std::vector<T>& arr, Compare compare = Compare())
+namespace dsa
 {
-	const std::size_t size = arr.size();
-
-	for (std::size_t i = 1;i < size;++i)
+	template<typename T, typename Compare = std::less<T>>
+	void InsertionSort(std::vector<T>& arr, Compare compare = Compare())
 	{
-		T key = arr[i];
-		std::size_t j = i;
+		const std::size_t size = arr.size();
 
-		while (j > 0 && compare(key, arr[j - 1]))
+		for (std::size_t i = 1;i < size;++i)
 		{
-			arr[j] = arr[j - 1];
-			--j;
-		}
+			T key = arr[i];
+			std::size_t j = i;
 
-		arr[j] = key;
+			while (j > 0 && compare(key, arr[j - 1]))
+			{
+				arr[j] = arr[j - 1];
+				--j;
+			}
+
+			arr[j] = key;
+		}
 	}
 }

@@ -13,22 +13,25 @@
 // Stable: No
 // In-place: Yes
 
-template<typename T, typename Compare = std::less<T>>
-void SelectionSort(std::vector<T>& arr, Compare compare = Compare())
+namespace dsa
 {
-	const std::size_t size = arr.size();
-
-	for (std::size_t i = 0;i + 1 < size;++i)
+	template<typename T, typename Compare = std::less<T>>
+	void SelectionSort(std::vector<T>& arr, Compare compare = Compare())
 	{
-		std::size_t minIndex = i;
-		for (std::size_t j = i + 1;j < size;++j)
-		{
-			if (compare(arr[j], arr[minIndex]))
-			{
-				minIndex = j;
-			}
-		}
+		const std::size_t size = arr.size();
 
-		std::swap(arr[i], arr[minIndex]);
+		for (std::size_t i = 0;i + 1 < size;++i)
+		{
+			std::size_t minIndex = i;
+			for (std::size_t j = i + 1;j < size;++j)
+			{
+				if (compare(arr[j], arr[minIndex]))
+				{
+					minIndex = j;
+				}
+			}
+
+			std::swap(arr[i], arr[minIndex]);
+		}
 	}
 }

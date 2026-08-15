@@ -15,70 +15,73 @@
 // Recursively splits the array into two halves until each subarray has one element.
 // Then each pair of sorted halves is merged back together.
 
-template<typename T, typename Compare = std::less<T>>
-void Merge(std::vector<T>& arr, std::size_t start, std::size_t mid, std::size_t end, Compare compare = Compare())
+namespace dsa
 {
-	std::vector<T> left(arr.begin() + start, arr.begin() + mid + 1);
-	std::vector<T> right(arr.begin() + mid + 1, arr.begin() + end + 1);
-
-	std::size_t i = 0;
-	std::size_t j = 0;
-	std::size_t k = start;
-
-	while (i < left.size() && j < right.size())
+	template<typename T, typename Compare = std::less<T>>
+	void Merge(std::vector<T>& arr, std::size_t start, std::size_t mid, std::size_t end, Compare compare = Compare())
 	{
-		if (!compare(right[j], left[i]))
+		std::vector<T> left(arr.begin() + start, arr.begin() + mid + 1);
+		std::vector<T> right(arr.begin() + mid + 1, arr.begin() + end + 1);
+
+		std::size_t i = 0;
+		std::size_t j = 0;
+		std::size_t k = start;
+
+		while (i < left.size() && j < right.size())
+		{
+			if (!compare(right[j], left[i]))
+			{
+				arr[k] = left[i];
+				++i;
+			}
+			else
+			{
+				arr[k] = right[j];
+				++j;
+			}
+
+			++k;
+		}
+
+		while (i < left.size())
 		{
 			arr[k] = left[i];
 			++i;
+			++k;
 		}
-		else
+
+		while (j < right.size())
 		{
 			arr[k] = right[j];
 			++j;
+			++k;
+		}
+	}
+
+	template<typename T, typename Compare = std::less<T>>
+	void MergeSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
+	{
+		if (end <= start)
+		{
+			return;
 		}
 
-		++k;
+		std::size_t mid = start + (end - start) / 2;
+
+		MergeSort(arr, start, mid, compare);
+		MergeSort(arr, mid + 1, end, compare);
+
+		Merge(arr, start, mid, end, compare);
 	}
 
-	while (i < left.size())
+	template<typename T, typename Compare = std::less<T>>
+	void MergeSort(std::vector<T>& arr, Compare compare = Compare())
 	{
-		arr[k] = left[i];
-		++i;
-		++k;
+		if (arr.size() <= 1)
+		{
+			return;
+		}
+
+		MergeSort(arr, 0, arr.size() - 1, compare);
 	}
-
-	while (j < right.size())
-	{
-		arr[k] = right[j];
-		++j;
-		++k;
-	}
-}
-
-template<typename T, typename Compare = std::less<T>>
-void MergeSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
-{
-	if (end <= start)
-	{
-		return;
-	}
-
-	std::size_t mid = start + (end - start) / 2;
-
-	MergeSort(arr, start, mid, compare);
-	MergeSort(arr, mid + 1, end, compare);
-
-	Merge(arr, start, mid, end, compare);
-}
-
-template<typename T, typename Compare = std::less<T>>
-void MergeSort(std::vector<T>& arr, Compare compare = Compare())
-{
-	if (arr.size() <= 1)
-	{
-		return;
-	}
-
-	MergeSort(arr, 0, arr.size() - 1, compare);
 }

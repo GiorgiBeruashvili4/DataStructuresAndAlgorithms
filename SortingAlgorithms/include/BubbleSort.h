@@ -13,26 +13,29 @@
 // Stable: Yes
 // In-place: Yes
 
-template<typename T, typename Compare = std::less<T>>
-void BubbleSort(std::vector<T>& arr, Compare compare = Compare())
+namespace dsa
 {
-	const std::size_t size = arr.size();
-
-	for (std::size_t i = 0;i + 1 < size;++i)
+	template<typename T, typename Compare = std::less<T>>
+	void BubbleSort(std::vector<T>& arr, Compare compare = Compare())
 	{
-		bool swapped = false;
-		for (std::size_t j = 0;j + 1 < size - i;++j)
-		{
-			if (compare(arr[j + 1], arr[j]))
-			{
-				std::swap(arr[j], arr[j + 1]);
-				swapped = true;
-			}
-		}
+		const std::size_t size = arr.size();
 
-		if (!swapped)
+		for (std::size_t i = 0;i + 1 < size;++i)
 		{
-			break;
+			bool swapped = false;
+			for (std::size_t j = 0;j + 1 < size - i;++j)
+			{
+				if (compare(arr[j + 1], arr[j]))
+				{
+					std::swap(arr[j], arr[j + 1]);
+					swapped = true;
+				}
+			}
+
+			if (!swapped)
+			{
+				break;
+			}
 		}
 	}
 }

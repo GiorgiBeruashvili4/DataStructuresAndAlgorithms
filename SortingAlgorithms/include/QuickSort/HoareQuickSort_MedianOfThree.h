@@ -18,79 +18,82 @@
 // Two indices move inward from opposite ends, swapping elements until they cross.
 // The returned index is a split point.
 
-namespace HoareQuickSort_MedianOfThree
+namespace dsa
 {
-	template<typename T, typename Compare = std::less<T>>
-	std::size_t Partition(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
+	namespace HoareQuickSort_MedianOfThree
 	{
-		std::size_t mid = start + (end - start) / 2;
-
-		if (compare(arr[mid], arr[start]))
+		template<typename T, typename Compare = std::less<T>>
+		std::size_t Partition(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
 		{
-			std::swap(arr[mid], arr[start]);
-		}
-		if (compare(arr[end], arr[start]))
-		{
-			std::swap(arr[end], arr[start]);
-		}
-		if (compare(arr[end], arr[mid]))
-		{
-			std::swap(arr[end], arr[mid]);
-		}
+			std::size_t mid = start + (end - start) / 2;
 
-		std::swap(arr[start], arr[mid]);
-		T pivot = arr[start];
-
-		std::ptrdiff_t left = static_cast<std::ptrdiff_t>(start) - 1;
-		std::ptrdiff_t right = static_cast<std::ptrdiff_t>(end) + 1;
-
-		while (true)
-		{
-			do
+			if (compare(arr[mid], arr[start]))
 			{
-				++left;
-			} while (compare(arr[left], pivot));
-
-			do
+				std::swap(arr[mid], arr[start]);
+			}
+			if (compare(arr[end], arr[start]))
 			{
-				--right;
-			} while (compare(pivot, arr[right]));
-
-			if (right <= left)
+				std::swap(arr[end], arr[start]);
+			}
+			if (compare(arr[end], arr[mid]))
 			{
-				return static_cast<std::size_t>(right);
+				std::swap(arr[end], arr[mid]);
 			}
 
-			std::swap(arr[left], arr[right]);
-		}
-	}
+			std::swap(arr[start], arr[mid]);
+			T pivot = arr[start];
 
-	template<typename T, typename Compare = std::less<T>>
-	void QuickSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
-	{
-		if (end <= start)
+			std::ptrdiff_t left = static_cast<std::ptrdiff_t>(start) - 1;
+			std::ptrdiff_t right = static_cast<std::ptrdiff_t>(end) + 1;
+
+			while (true)
+			{
+				do
+				{
+					++left;
+				} while (compare(arr[left], pivot));
+
+				do
+				{
+					--right;
+				} while (compare(pivot, arr[right]));
+
+				if (right <= left)
+				{
+					return static_cast<std::size_t>(right);
+				}
+
+				std::swap(arr[left], arr[right]);
+			}
+		}
+
+		template<typename T, typename Compare = std::less<T>>
+		void QuickSort(std::vector<T>& arr, std::size_t start, std::size_t end, Compare compare = Compare())
 		{
-			return;
+			if (end <= start)
+			{
+				return;
+			}
+
+			std::size_t partitionIndex = Partition(arr, start, end, compare);
+
+			if (start < partitionIndex)
+			{
+				QuickSort(arr, start, partitionIndex, compare);
+			}
+
+			QuickSort(arr, partitionIndex + 1, end, compare);
 		}
 
-		std::size_t partitionIndex = Partition(arr, start, end, compare);
-
-		if (start < partitionIndex)
+		template<typename T, typename Compare = std::less<T>>
+		void QuickSort(std::vector<T>& arr, Compare compare = Compare())
 		{
-			QuickSort(arr, start, partitionIndex, compare);
+			if (arr.size() <= 1)
+			{
+				return;
+			}
+
+			QuickSort(arr, 0, arr.size() - 1, compare);
 		}
-
-		QuickSort(arr, partitionIndex + 1, end, compare);
-	}
-
-	template<typename T, typename Compare = std::less<T>>
-	void QuickSort(std::vector<T>& arr, Compare compare = Compare())
-	{
-		if (arr.size() <= 1)
-		{
-			return;
-		}
-
-		QuickSort(arr, 0, arr.size() - 1, compare);
 	}
 }

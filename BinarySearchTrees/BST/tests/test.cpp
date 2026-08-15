@@ -5,14 +5,14 @@
 
 TEST(BSTTest, EmptyOnConstruction)
 {
-	BST<int> tree;
+	dsa::BST<int> tree;
 	EXPECT_TRUE(tree.empty());
 	EXPECT_EQ(tree.size(), 0);
 }
 
 TEST(BSTTest, InsertAndContains)
 {
-	BST<int> tree;
+    dsa::BST<int> tree;
 	tree.insertRecursive(10);
 	tree.insertRecursive(5);
 	tree.insertRecursive(15);
@@ -23,7 +23,7 @@ TEST(BSTTest, InsertAndContains)
 
 TEST(BSTTest, InOrderIsSorted)
 {
-	BST<int> tree;
+    dsa::BST<int> tree;
 	for (int i : {10, 5, 15, 3, 7})
 	{
 		tree.insertIterative(i);
@@ -37,7 +37,7 @@ TEST(BSTTest, InOrderIsSorted)
 
 TEST(BSTTest, RemoveLeaf)
 {
-	BST<int> tree;
+    dsa::BST<int> tree;
 	for (int i : {10, 5, 15})
 	{
 		tree.insertRecursive(i);
@@ -49,7 +49,7 @@ TEST(BSTTest, RemoveLeaf)
 
 TEST(BSTTest, RemoveNodeWithTwoChildren)
 {
-	BST<int> tree;
+    dsa::BST<int> tree;
 	for (int i : {10, 5, 15, 3})
 	{
 		tree.insertIterative(i);
@@ -66,7 +66,7 @@ TEST(BSTTest, RemoveNodeWithTwoChildren)
 
 TEST(BSTTest, RemovePredecessorWithChild)
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
     for (int i : {10, 5, 15, 2, 7, 1})
     {
         tree.insertRecursive(i);
@@ -82,7 +82,7 @@ TEST(BSTTest, RemovePredecessorWithChild)
 
 TEST(BSTTest, RemoveNonExistentValue)
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
     tree.insertRecursive(10);
 
     EXPECT_FALSE(tree.removeRecursive(999));
@@ -91,7 +91,7 @@ TEST(BSTTest, RemoveNonExistentValue)
 
 TEST(BSTTest, MinMaxThrowOnEmpty)
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
 
     EXPECT_THROW(tree.min(), std::runtime_error);
     EXPECT_THROW(tree.max(), std::runtime_error);
@@ -99,7 +99,7 @@ TEST(BSTTest, MinMaxThrowOnEmpty)
 
 TEST(BSTTest, MinMax)
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
     for (int i : {10, 5, 15, 3, 20})
     {
         tree.insertRecursive(i);
@@ -111,13 +111,13 @@ TEST(BSTTest, MinMax)
 
 TEST(BSTTest, CopyConstructorIsDeep)
 {
-    BST<int> a;
+    dsa::BST<int> a;
     for (int i : {10, 5, 15})
     {
         a.insertRecursive(i);
     }
 
-    BST<int> b(a);
+    dsa::BST<int> b(a);
     b.insertRecursive(20);
 
     EXPECT_FALSE(a.containsRecursive(20));
@@ -125,7 +125,7 @@ TEST(BSTTest, CopyConstructorIsDeep)
 
 TEST(BSTTest, Equality)
 {
-    BST<int> a, b;
+    dsa::BST<int> a, b;
     for (int i : {10, 5, 15})
     {
         a.insertRecursive(i);
@@ -140,7 +140,7 @@ TEST(BSTTest, Equality)
 
 TEST(BSTTest, ClearEmptiesTree)
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
 
     tree.insertRecursive(10);
     tree.clear();

@@ -5,7 +5,7 @@
 
 TEST(StackTest, EmptyOnConstruction)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	EXPECT_TRUE(stack.empty());
 	EXPECT_EQ(stack.size(), 0);
@@ -13,7 +13,7 @@ TEST(StackTest, EmptyOnConstruction)
 
 TEST(StackTest, PeekIsLastInsertedElement)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	for (int i : {10, 20, 30, 40, 50})
 	{
@@ -25,7 +25,7 @@ TEST(StackTest, PeekIsLastInsertedElement)
 
 TEST(StackTest, PushIsCorrect)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	for (int i : {10, 20, 30, 40, 50})
 	{
@@ -41,7 +41,7 @@ TEST(StackTest, PushIsCorrect)
 
 TEST(StackTest, PopIsCorrect)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	for (int i : {10, 20, 30, 40, 50})
 	{
@@ -57,14 +57,14 @@ TEST(StackTest, PopIsCorrect)
 
 TEST(StackTest, CopyConstructorIsDeep)
 {
-	Stack<int> a;
+	dsa::Stack<int> a;
 
 	for (int i : {10, 20, 30, 40, 50})
 	{
 		a.push(i);
 	}
 
-	Stack<int> b(a);
+	dsa::Stack<int> b(a);
 
 	b.push(60);
 
@@ -73,13 +73,13 @@ TEST(StackTest, CopyConstructorIsDeep)
 
 TEST(StackTest, CopyAssignmentIsDeep)
 {
-	Stack<int> a;
+	dsa::Stack<int> a;
 	for (int i : {10, 20, 30, 40, 50})
 	{
 		a.push(i);
 	}
 
-	Stack<int> b;
+	dsa::Stack<int> b;
 	b.push(100);
 	b = a;
 
@@ -93,7 +93,7 @@ TEST(StackTest, CopyAssignmentIsDeep)
 
 TEST(StackTest, ClearEmptiesStack)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	stack.push(10);
 	stack.clear();
@@ -103,7 +103,7 @@ TEST(StackTest, ClearEmptiesStack)
 
 TEST(StackTest, LifoOrderWithMixedOperations)
 {
-	Stack<int> stack;
+	dsa::Stack<int> stack;
 
 	stack.push(10);
 	stack.push(20);
