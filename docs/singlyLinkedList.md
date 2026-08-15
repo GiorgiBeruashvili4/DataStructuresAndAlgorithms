@@ -4,7 +4,7 @@ A generic singly linked list implementation.
 
 ## Features
 
-- `List<T>` template - works with any data type.
+- `SinglyLinkedList<T>` template - works with any data type.
 - Dynamic size - grows and shrinks as elements are added/removed.
 - Rule-of-five - copy constructor, move constructor, copy assignment, move assignments, destructor
 - Forward iterator (`begin()` / `end()`), including `const` iteration and range-base `for` loops.
@@ -28,22 +28,22 @@ A generic singly linked list implementation.
 ## API Overview
 
 ```cpp
-List list;
+SinglyLinkedList<int> list;
 
-List.push_back(1);
-List.push_front(0);
-List.insert(5, 1);
-List.removeAt(0);
-List.removeValue(5);
-List.front();
-List.back();
-List.at(0);
-List.contains(1);
-List.indexOf(1);
-List.reverse();
-List.size();
-List.empty();
-List.clear();
+list.push_back(1);
+list.push_front(0);
+list.insert(5, 1);
+list.removeAt(0);
+list.removeValue(5);
+list.front();
+list.back();
+list.at(0);
+list.contains(1);
+list.indexOf(1);
+list.reverse();
+list.size();
+list.empty();
+list.clear();
 
 for (int value : list)
 {
