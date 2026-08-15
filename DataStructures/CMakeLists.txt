@@ -1,3 +1,0 @@
-add_subdirectory(SinglyLinkedList)
-add_subdirectory(DoublyLinkedList)
-add_subdirectory(Stack)
