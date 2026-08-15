@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "dsa/stack.h"
+#include <dsa/stack.h>
 #include <sstream>
 #include <stdexcept>
 

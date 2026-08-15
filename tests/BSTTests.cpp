@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "dsa/BST.h"
+#include <dsa/BST.h>
 #include <sstream>
 #include <stdexcept>
 
