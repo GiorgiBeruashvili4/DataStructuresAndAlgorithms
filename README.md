@@ -138,3 +138,7 @@ The implementations are written from scratch to practice:
 The main goal of this project is to understand the implementations, complexity 
 and trade-offs of common data structures and algorithms rather than provide a 
 production-ready alternative to the C++ standard library.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
