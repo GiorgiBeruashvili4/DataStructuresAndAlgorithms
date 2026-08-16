@@ -15,6 +15,7 @@ DataStructuresAndAlgorithms/
 │   ├── BubbleSort.md
 │   ├── InsertionSort.md
 │   ├── MergeSort.md
+│   ├── HeapSort.md
 │   ├── QuickSort.md
 │   ├── SelectionSort.md
 │   ├── doublyLinkedList.md
@@ -26,10 +27,12 @@ DataStructuresAndAlgorithms/
 │       ├── BubbleSort.h
 │       ├── InsertionSort.h
 │       ├── MergeSort.h
+│       ├── HeapSort.h
 │       ├── SelectionSort.h
 │       ├── doublyLinkedList.h
 │       ├── singlyLinkedList.h
 │       ├── stack.h
+│       ├── Queue.h
 │       │
 │       └── quick_sort/
 │           ├── HoarePartition_FirstPivot.h
@@ -52,6 +55,7 @@ DataStructuresAndAlgorithms/
 | Header | Description |
 |---|---|
 | `stack.h` | Templated LIFO stack implemented using a singly linked list |
+| `Queue.h` | Templated FIFO queue implemented using a singly linked list |
 | `singlyLinkedList.h` | Generic singly linked list - push/pop front & back, insert, remove, reverse |
 | `doublyLinkedList.h` | Generic doubly linked list - O(1) push/pop both ends, insert, remove, reverse |
 | `BST.h` | Binary search tree with both iterative and recursive insert/remove/contains |
@@ -63,6 +67,7 @@ DataStructuresAndAlgorithms/
 | `InsertionSort.h` | O(n²) comparison sort, stable |
 | `SelectionSort.h` | O(n²) comparison sort, not stable |
 | `MergeSort.h` | O(n log n), stable, extra O(n) space |
+| `HeapSort.h` | O(n log n), not stable, no extra space |
 | `HoarePartition_*.h` / `LomutoPartition_*.h` | Six QuickSort variants comparing Hoare and Lomuto partition schemes with different pivot-selection strategies - see `docs/QuickSort.md` |
 
 ## Building & Testing
