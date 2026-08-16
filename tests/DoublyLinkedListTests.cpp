@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <dsa/doublyLinkedList.h>
+#include <dsa/DoublyLinkedList.h>
 #include <stdexcept>
 
 TEST(DoublyLinkedListTest, PushBack)

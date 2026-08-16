@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <dsa/singlyLinkedList.h>
+#include <dsa/SinglyLinkedList.h>
 #include <stdexcept>
 
 TEST(SinglyLinkedListTest, PushBack)
