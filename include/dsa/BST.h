@@ -292,13 +292,14 @@ namespace dsa
 
 		while (current != nullptr)
 		{
-			parent = current;
 			if (value < current->data)
 			{
+				parent = current;
 				current = current->left;
 			}
 			else if (current->data < value)
 			{
+				parent = current;
 				current = current->right;
 			}
 			else
