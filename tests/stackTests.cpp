@@ -55,6 +55,27 @@ TEST(StackTest, PopIsCorrect)
 	EXPECT_EQ(stack.peek(), 40);
 }
 
+TEST(StackTest, PopOnEmptyThrows)
+{
+	dsa::Stack<int> stack;
+
+	EXPECT_THROW(stack.pop(), std::out_of_range);
+}
+
+TEST(StackTest, PeekOnEmptyThrows)
+{
+	dsa::Stack<int> stack;
+
+	EXPECT_THROW(stack.peek(), std::out_of_range);
+}
+
+TEST(StackTest, ConstPeekOnEmptyThrows)
+{
+	const dsa::Stack<int> stack;
+
+	EXPECT_THROW(stack.peek(), std::out_of_range);
+}
+
 TEST(StackTest, CopyConstructorIsDeep)
 {
 	dsa::Stack<int> a;
@@ -91,11 +112,33 @@ TEST(StackTest, CopyAssignmentIsDeep)
 	EXPECT_EQ(b.peek(), 60);
 }
 
+TEST(StackTest, SelfAssignmentIsSafe)
+{
+	dsa::Stack<int> a;
+	for (int i : {10, 20, 30, 40, 50})
+	{
+		a.push(i);
+	}
+
+	a = a;
+
+	EXPECT_EQ(a.peek(), 50);
+	EXPECT_EQ(a.size(), 5);
+}
+
 TEST(StackTest, ClearEmptiesStack)
 {
 	dsa::Stack<int> stack;
 
 	stack.push(10);
+	stack.clear();
+
+	EXPECT_TRUE(stack.empty());
+}
+
+TEST(StackTest, ClearOnEmptyStackIsSafe)
+{
+	dsa::Stack<int> stack;
 	stack.clear();
 
 	EXPECT_TRUE(stack.empty());

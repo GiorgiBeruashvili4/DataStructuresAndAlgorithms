@@ -82,6 +82,33 @@ TEST(DoublyLinkedListTest, Insert)
 	EXPECT_EQ(l.at(2), 3);
 }
 
+TEST(DoublyLinkedListTest, InsertAtFront)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	l.push_back(2);
+	l.push_back(3);
+
+	l.insert(1, 0);
+
+	EXPECT_EQ(l.size(), 3);
+	EXPECT_EQ(l.front(), 1);
+}
+
+TEST(DoublyLinkedListTest, InsertAtEnd)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+
+	l.insert(3, l.size());
+
+	EXPECT_EQ(l.size(), 3);
+	EXPECT_EQ(l.back(), 3);
+}
+
+
 TEST(DoublyLinkedListTest, RemoveAt)
 {
 	dsa::DoublyLinkedList<int> l;
@@ -95,6 +122,34 @@ TEST(DoublyLinkedListTest, RemoveAt)
 	EXPECT_EQ(l.size(), 2);
 	EXPECT_EQ(l.at(0), 1);
 	EXPECT_EQ(l.at(1), 3);
+}
+
+TEST(DoublyLinkedListTest, RemoveAtFront)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
+
+	l.removeAt(0);
+
+	EXPECT_EQ(l.size(), 2);
+	EXPECT_EQ(l.front(), 2);
+}
+
+TEST(DoublyLinkedListTest, RemoveAtEnd)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
+
+	l.removeAt(l.size() - 1);
+
+	EXPECT_EQ(l.size(), 2);
+	EXPECT_EQ(l.back(), 2);
 }
 
 TEST(DoublyLinkedListTest, RemoveValue)
@@ -165,11 +220,27 @@ TEST(DoublyLinkedListTest, Clear)
 	EXPECT_EQ(l.size(), 0);
 }
 
+TEST(DoublyLinkedListTest, ClearOnEmptyListIsSafe)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	l.clear();
+
+	EXPECT_TRUE(l.empty());
+}
+
 TEST(DoublyLinkedListTest, PopFrontOnEmptyThrows)
 {
 	dsa::DoublyLinkedList<int> l;
 
 	EXPECT_THROW(l.pop_front(), std::out_of_range);
+}
+
+TEST(DoublyLinkedListTest, PopBackOnEmptyThrows)
+{
+	dsa::DoublyLinkedList<int> l;
+
+	EXPECT_THROW(l.pop_back(), std::out_of_range);
 }
 
 TEST(DoublyLinkedListTest, AtOutOfRangeThrows)
@@ -211,4 +282,55 @@ TEST(DoublyLinkedListTest, PopBackAfterReverse)
 	EXPECT_EQ(l.size(), 2);
 	EXPECT_EQ(l.back(), 2);
 	EXPECT_EQ(l.front(), 3);
+}
+
+TEST(DoublyLinkedListTest, CopyConstructorIsDeep)
+{
+	dsa::DoublyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+	a.push_back(3);
+
+	dsa::DoublyLinkedList<int> b(a);
+	b.push_back(4);
+
+	EXPECT_EQ(a.size(), 3);
+	EXPECT_EQ(b.size(), 4);
+	EXPECT_EQ(a.back(), 3);
+	EXPECT_EQ(b.back(), 4);
+}
+
+TEST(DoublyLinkedListTest, CopyAssignmentIsDeep)
+{
+	dsa::DoublyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+	a.push_back(3);
+
+	dsa::DoublyLinkedList<int> b;
+	b.push_back(100);
+
+	b = a;
+
+	EXPECT_EQ(b.size(), 3);
+	EXPECT_EQ(b.back(), 3);
+
+	b.push_back(4);
+
+	EXPECT_EQ(a.size(), 3);
+	EXPECT_EQ(a.back(), 3);
+	EXPECT_EQ(b.back(), 4);
+}
+
+TEST(DoublyLinkedListTest, SelfAssignmentIsSafe)
+{
+	dsa::DoublyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+
+	a = a;
+
+	EXPECT_EQ(a.size(), 2);
+	EXPECT_EQ(a.front(), 1);
+	EXPECT_EQ(a.back(), 2);
 }

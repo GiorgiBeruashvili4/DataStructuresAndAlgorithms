@@ -82,6 +82,33 @@ TEST(SinglyLinkedListTest, Insert)
 	EXPECT_EQ(l.at(2), 3);
 }
 
+TEST(SinglyLinkedListTest, InsertAtFront)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	l.push_back(2);
+	l.push_back(3);
+
+	l.insert(1, 0);
+
+	EXPECT_EQ(l.size(), 3);
+	EXPECT_EQ(l.front(), 1);
+	EXPECT_EQ(l.at(0), 1);
+}
+
+TEST(SinglyLinkedListTest, InsertAtEnd)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+
+	l.insert(3, l.size());
+
+	EXPECT_EQ(l.size(), 3);
+	EXPECT_EQ(l.back(), 3);
+}
+
 TEST(SinglyLinkedListTest, RemoveAt)
 {
 	dsa::SinglyLinkedList<int> l;
@@ -95,6 +122,34 @@ TEST(SinglyLinkedListTest, RemoveAt)
 	EXPECT_EQ(l.size(), 2);
 	EXPECT_EQ(l.at(0), 1);
 	EXPECT_EQ(l.at(1), 3);
+}
+
+TEST(SinglyLinkedListTest, RemoveAtFront)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
+
+	l.removeAt(0);
+
+	EXPECT_EQ(l.size(), 2);
+	EXPECT_EQ(l.front(), 2);
+}
+
+TEST(SinglyLinkedListTest, RemoveAtEnd)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	l.push_back(1);
+	l.push_back(2);
+	l.push_back(3);
+
+	l.removeAt(l.size() - 1);
+
+	EXPECT_EQ(l.size(), 2);
+	EXPECT_EQ(l.back(), 2);
 }
 
 TEST(SinglyLinkedListTest, RemoveValue)
@@ -165,6 +220,15 @@ TEST(SinglyLinkedListTest, Clear)
 	EXPECT_EQ(l.size(), 0);
 }
 
+TEST(SinglyLinkedListTest, ClearOnEmptyListIsSafe)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	l.clear();
+
+	EXPECT_TRUE(l.empty());
+}
+
 TEST(SinglyLinkedListTest, PopFrontOnEmptyThrows)
 {
 	dsa::SinglyLinkedList<int> l;
@@ -172,9 +236,67 @@ TEST(SinglyLinkedListTest, PopFrontOnEmptyThrows)
 	EXPECT_THROW(l.pop_front(), std::out_of_range);
 }
 
+TEST(SinglyLinkedListTest, PopBackOnEmptyThrows)
+{
+	dsa::SinglyLinkedList<int> l;
+
+	EXPECT_THROW(l.pop_back(), std::out_of_range);
+}
+
 TEST(SinglyLinkedListTest, AtOutOfRangeThrows)
 {
 	dsa::SinglyLinkedList<int> l;
 
 	EXPECT_THROW(l.at(5), std::out_of_range);
+}
+
+TEST(SinglyLinkedListTest, CopyConstructorIsDeep)
+{
+	dsa::SinglyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+	a.push_back(3);
+
+	dsa::SinglyLinkedList<int> b(a);
+	b.push_back(4);
+
+	EXPECT_EQ(a.size(), 3);
+	EXPECT_EQ(b.size(), 4);
+	EXPECT_EQ(a.back(), 3);
+	EXPECT_EQ(b.back(), 4);
+}
+
+TEST(SinglyLinkedListTest, CopyAssignmentIsDeep)
+{
+	dsa::SinglyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+	a.push_back(3);
+
+	dsa::SinglyLinkedList<int> b;
+	b.push_back(100);
+
+	b = a;
+
+	EXPECT_EQ(b.size(), 3);
+	EXPECT_EQ(b.back(), 3);
+
+	b.push_back(4);
+
+	EXPECT_EQ(a.size(), 3);
+	EXPECT_EQ(a.back(), 3);
+	EXPECT_EQ(b.back(), 4);
+}
+
+TEST(SinglyLinkedListTest, SelfAssignmentIsSafe)
+{
+	dsa::SinglyLinkedList<int> a;
+	a.push_back(1);
+	a.push_back(2);
+
+	a = a;
+
+	EXPECT_EQ(a.size(), 2);
+	EXPECT_EQ(a.front(), 1);
+	EXPECT_EQ(a.back(), 2);
 }
