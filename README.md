@@ -10,6 +10,7 @@ algorithms, built for learning.
 |---|---|
 | `Stack.h` | Templated LIFO stack implemented using a singly linked list |
 | `Queue.h` | Templated FIFO queue implemented using a singly linked list |
+| `PriorityQueue.h` | Templated priority queue implemented using a binary heap over a `std::vector` |
 | `SinglyLinkedList.h` | Generic singly linked list - push/pop front & back, insert, remove, reverse |
 | `DoublyLinkedList.h` | Generic doubly linked list - O(1) push/pop both ends, insert, remove, reverse |
 | `BST.h` | Binary search tree with both iterative and recursive insert/remove/contains |
