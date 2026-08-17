@@ -3,61 +3,15 @@
 A header-only C++20 Library of hand-implemented data structures and 
 algorithms, built for learning.
 
-## Layout
-
-```text
-DataStructuresAndAlgorithms/
-├── .gitignore
-├── README.md
-├── CMakeLists.txt
-├── docs/
-│   ├── BST.md
-│   ├── BubbleSort.md
-│   ├── InsertionSort.md
-│   ├── MergeSort.md
-│   ├── HeapSort.md
-│   ├── QuickSort.md
-│   ├── SelectionSort.md
-│   ├── doublyLinkedList.md
-│   └── singlyLinkedList.md
-│
-├── include/
-│   └── dsa/
-│       ├── BST.h
-│       ├── BubbleSort.h
-│       ├── InsertionSort.h
-│       ├── MergeSort.h
-│       ├── HeapSort.h
-│       ├── SelectionSort.h
-│       ├── doublyLinkedList.h
-│       ├── singlyLinkedList.h
-│       ├── stack.h
-│       ├── Queue.h
-│       │
-│       └── quick_sort/
-│           ├── HoarePartition_FirstPivot.h
-│           ├── HoarePartition_MedianOfThree.h
-│           ├── HoarePartition_RandomPivot.h
-│           ├── LomutoPartition_LastPivot.h
-│           ├── LomutoPartition_MedianOfThree.h
-│           └── LomutoPartition_RandomPivot.h
-│
-└── tests/
-    ├── BSTTests.cpp
-    ├── doublyLinkedListTests.cpp
-    ├── singlyLinkedListTests.cpp
-    └── stackTests.cpp
-```
-
 ## Contents
 
 ### Data Structures
 | Header | Description |
 |---|---|
-| `stack.h` | Templated LIFO stack implemented using a singly linked list |
+| `Stack.h` | Templated LIFO stack implemented using a singly linked list |
 | `Queue.h` | Templated FIFO queue implemented using a singly linked list |
-| `singlyLinkedList.h` | Generic singly linked list - push/pop front & back, insert, remove, reverse |
-| `doublyLinkedList.h` | Generic doubly linked list - O(1) push/pop both ends, insert, remove, reverse |
+| `SinglyLinkedList.h` | Generic singly linked list - push/pop front & back, insert, remove, reverse |
+| `DoublyLinkedList.h` | Generic doubly linked list - O(1) push/pop both ends, insert, remove, reverse |
 | `BST.h` | Binary search tree with both iterative and recursive insert/remove/contains |
 
 ### Sorting Algorithms
@@ -110,7 +64,7 @@ target_link_libraries(YourTarget PRIVATE dsa)
 Then include the headers you need:
 
 ```
-#include <dsa/stack.h>
+#include <dsa/Stack.h>
 #include <dsa/BST.h>
 #include <dsa/quick_sort/HoarePartition_FirstPivot.h>
 ```
@@ -121,7 +75,7 @@ The library is header-only, so you can simply add the `include/` directory to yo
 
 Then:
 ```
-#include <dsa/stack.h>
+#include <dsa/Stack.h>
 #include <dsa/BubbleSort.h>
 ```
 
