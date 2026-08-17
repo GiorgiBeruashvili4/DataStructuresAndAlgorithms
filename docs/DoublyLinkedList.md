@@ -27,7 +27,7 @@ A generic doubly linked list implementation.
 
 ## Key Difference From The Singly Linked List Version
 
-Every `Node` stores both a `nest` and a `previous` pointer,
+Every `Node` stores both a `next` and a `previous` pointer,
 that makes `pop_back()` O(1) instead of O(n). Also allows `at(index)` 
 to traverse from whichever end is closer to the requested index.
 
