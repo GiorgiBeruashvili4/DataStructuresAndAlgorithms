@@ -75,9 +75,36 @@ namespace dsa
 	}
 
 	template<typename T>
+	inline AVL<T>::AVL(const AVL& other)
+		: root(copy(other.root)), count(other.count)
+	{
+	}
+
+	template<typename T>
 	inline AVL<T>::~AVL()
 	{
 		clear();
+	}
+
+	template<typename T>
+	inline AVL<T>& AVL<T>::operator=(const AVL& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		clear();
+		root = copy(other.root);
+		count = other.count;
+
+		return *this;
+	}
+
+	template<typename T>
+	inline bool AVL<T>::operator==(const AVL& other) const
+	{
+		return equals(root, other.root);
 	}
 
 	template<typename T>
@@ -138,6 +165,39 @@ namespace dsa
 		}
 
 		return findMin(root)->data;
+	}
+
+	template<typename T>
+	inline typename AVL<T>::Node* AVL<T>::copy(Node* node)
+	{
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		Node* newNode = new Node(node->data);
+		newNode->left = copy(node->left);
+		newNode->right = copy(node->right);
+
+		return newNode;
+	}
+
+	template<typename T>
+	inline bool AVL<T>::equals(Node* first, Node* second) const
+	{
+		if (first == nullptr && second == nullptr)
+		{
+			return true;
+		}
+
+		if (first == nullptr || second == nullptr)
+		{
+			return false;
+		}
+
+		return first->data == second->data &&
+			equals(first->left, second->left) &&
+			equals(first->right, second->right);
 	}
 
 	template<typename T>
