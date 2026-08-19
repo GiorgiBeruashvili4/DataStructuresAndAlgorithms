@@ -3,209 +3,224 @@
 #include <ostream>
 #include <stdexcept>
 
-template<typename T>
-class AVL
+namespace dsa
 {
-private:
-	struct Node
+	template<typename T>
+	class AVL
 	{
-		T data;
-		Node* left;
-		Node* right;
-		std::size_t height;
+	private:
+		struct Node
+		{
+			T data;
+			Node* left;
+			Node* right;
+			std::size_t height;
 
-		Node(const T& value) : data(value), left(nullptr), right(nullptr), height(1) {}
+			Node(const T& value) : data(value), left(nullptr), right(nullptr), height(1) {}
+		};
+
+		Node* root;
+		std::size_t count;
+	public:
+		AVL();
+		AVL(const AVL& other);
+		~AVL();
+		AVL& operator=(const AVL& other);
+		bool operator==(const AVL& other) const;
+
+		std::size_t size() const;
+		bool empty() const;
+
+		void insert(const T& value);
+		bool remove(const T& value);
+		bool contains(const T& value) const;
+
+		void preOrder(std::ostream& out = std::cout) const;
+		void inOrder(std::ostream& out = std::cout) const;
+		void postOrder(std::ostream& out = std::cout) const;
+
+		void clear();
+
+		const T& max() const;
+		const T& min() const;
+	private:
+		Node* copy(Node* node);
+		bool equals(Node* first, Node* second) const;
+
+		std::size_t getHeight(Node* node) const;
+		std::size_t getBalance(Node* node) const;
+		void updateHeight(Node* node);
+		Node* balance(Node* node);
+
+		Node* leftRotate(Node* node);
+		Node* rightRotate(Node* node);
+
+		void insert(Node*& node, const T& value);
+		bool remove(Node*& node, const T& value);
+		bool contains(Node* node, const T& value) const;
+
+		void preOrder(std::ostream& out, Node* node) const;
+		void inOrder(std::ostream& out, Node* node) const;
+		void postOrder(std::ostream& out, Node* node) const;
+
+		void clear(Node* node);
+
+		Node* findMin(Node* node) const;
+		Node* findMax(Node* node) const;
 	};
 
-	Node* root;
-	std::size_t count;
-public:
-	AVL();
-	AVL(const AVL& other);
-	~AVL();
-	AVL& operator=(const AVL& other);
-	bool operator==(const AVL& other) const;
-
-	std::size_t size() const;
-	bool empty() const;
-
-	void insert(const T& value);
-	bool remove(const T& value);
-	bool contains(const T& value) const;
-
-	void preOrder(std::ostream& out = std::cout) const;
-	void inOrder(std::ostream& out = std::cout) const;
-	void postOrder(std::ostream& out = std::cout) const;
-
-	void clear();
-
-	const T& max() const;
-	const T& min() const;
-private:
-	Node* copy(Node* node);
-	bool equals(Node* first, Node* second) const;
-
-	std::size_t getHeight(Node* node) const;
-	std::size_t getBalance(Node* node) const;
-	void updateHeight(Node* node);
-	Node* balance(Node* node);
-
-	Node* leftRotate(Node* node);
-	Node* rightRotate(Node* node);
-
-	void insert(Node*& node, const T& value);
-	bool remove(Node*& node, const T& value);
-	bool contains(Node* node, const T& value) const;
-
-	void preOrder(std::ostream& out, Node* node) const;
-	void inOrder(std::ostream& out, Node* node) const;
-	void postOrder(std::ostream& out, Node* node) const;
-
-	void clear(Node* node);
-
-	Node* findMin(Node* node) const;
-	Node* findMax(Node* node) const;
-};
-
-template<typename T>
-inline AVL<T>::AVL() : root(nullptr), count(0)
-{
-}
-
-template<typename T>
-inline AVL<T>::~AVL()
-{
-	clear();
-}
-
-template<typename T>
-inline std::size_t AVL<T>::size() const
-{
-	return count;
-}
-
-template<typename T>
-inline bool AVL<T>::empty() const
-{
-	return count == 0;
-}
-
-template<typename T>
-inline void AVL<T>::preOrder(std::ostream& out) const
-{
-	preOrder(out, root);
-}
-
-template<typename T>
-inline void AVL<T>::inOrder(std::ostream& out) const
-{
-	inOrder(out, root);
-}
-
-template<typename T>
-inline void AVL<T>::postOrder(std::ostream& out) const
-{
-	postOrder(out, root);
-}
-
-template<typename T>
-inline void AVL<T>::clear()
-{
-	clear(root);
-}
-
-template<typename T>
-inline const T& AVL<T>::max() const
-{
-	return findMax()->data;
-}
-
-template<typename T>
-inline const T& AVL<T>::min() const
-{
-	return findMin()->data;
-}
-
-template<typename T>
-inline void AVL<T>::preOrder(std::ostream& out, Node* node) const
-{
-	if (node == nullptr)
+	template<typename T>
+	inline AVL<T>::AVL() : root(nullptr), count(0)
 	{
-		return;
 	}
 
-	out << node->data << " ";
-	preOrder(out, node->left);
-	preOrder(out, node->right);
-}
-
-template<typename T>
-inline void AVL<T>::inOrder(std::ostream& out, Node* node) const
-{
-	if (node == nullptr)
+	template<typename T>
+	inline AVL<T>::~AVL()
 	{
-		return;
+		clear();
 	}
 
-	preOrder(out, node->left);
-	out << node->data << " ";
-	preOrder(out, node->right);
-}
-
-template<typename T>
-inline void AVL<T>::postOrder(std::ostream& out, Node* node) const
-{
-	if (node == nullptr)
+	template<typename T>
+	inline std::size_t AVL<T>::size() const
 	{
-		return;
+		return count;
 	}
 
-	preOrder(out, node->left);
-	preOrder(out, node->right);
-	out << node->data << " ";
-}
-
-template<typename T>
-inline void AVL<T>::clear(Node* node)
-{
-	if (node == nullptr)
+	template<typename T>
+	inline bool AVL<T>::empty() const
 	{
-		return;
+		return count == 0;
 	}
 
-	clear(node->left);
-	clear(node->right);
-	delete node;
-}
-
-template<typename T>
-inline AVL<T>::Node* AVL<T>::findMin(Node* node) const
-{
-	if (node == nullptr)
+	template<typename T>
+	inline void AVL<T>::preOrder(std::ostream& out) const
 	{
-		return nullptr;
-	}
-	
-	while (node->left != nullptr)
-	{
-		node = node->left;
+		preOrder(out, root);
 	}
 
-	return node;
-}
-
-template<typename T>
-inline AVL<T>::Node* AVL<T>::findMax(Node* node) const
-{
-	if (node == nullptr)
+	template<typename T>
+	inline void AVL<T>::inOrder(std::ostream& out) const
 	{
-		return nullptr;
+		inOrder(out, root);
 	}
 
-	while (node->right != nullptr)
+	template<typename T>
+	inline void AVL<T>::postOrder(std::ostream& out) const
 	{
-		node = node->right;
+		postOrder(out, root);
 	}
 
-	return node;
+	template<typename T>
+	inline void AVL<T>::clear()
+	{
+		clear(root);
+		root = nullptr;
+		count = 0;
+	}
+
+	template<typename T>
+	inline const T& AVL<T>::max() const
+	{
+		if (empty())
+		{
+			throw std::runtime_error("AVL is empty");
+		}
+
+		return findMax(root)->data;
+	}
+
+	template<typename T>
+	inline const T& AVL<T>::min() const
+	{
+		if (empty())
+		{
+			throw std::runtime_error("AVL is empty");
+		}
+
+		return findMin(root)->data;
+	}
+
+	template<typename T>
+	inline void AVL<T>::preOrder(std::ostream& out, Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		out << node->data << " ";
+		preOrder(out, node->left);
+		preOrder(out, node->right);
+	}
+
+	template<typename T>
+	inline void AVL<T>::inOrder(std::ostream& out, Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		inOrder(out, node->left);
+		out << node->data << " ";
+		inOrder(out, node->right);
+	}
+
+	template<typename T>
+	inline void AVL<T>::postOrder(std::ostream& out, Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		postOrder(out, node->left);
+		postOrder(out, node->right);
+		out << node->data << " ";
+	}
+
+	template<typename T>
+	inline void AVL<T>::clear(Node* node)
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		clear(node->left);
+		clear(node->right);
+		delete node;
+	}
+
+	template<typename T>
+	inline typename AVL<T>::Node* AVL<T>::findMin(Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		while (node->left != nullptr)
+		{
+			node = node->left;
+		}
+
+		return node;
+	}
+
+	template<typename T>
+	inline typename AVL<T>::Node* AVL<T>::findMax(Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		while (node->right != nullptr)
+		{
+			node = node->right;
+		}
+
+		return node;
+	}
 }
