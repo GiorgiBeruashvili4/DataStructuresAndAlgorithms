@@ -289,7 +289,7 @@ namespace dsa
 	{
 		if (node == nullptr || node->right == nullptr)
 		{
-			return nullptr;
+			return node;
 		}
 		
 		Node* temp = node->right;
