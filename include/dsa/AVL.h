@@ -283,4 +283,21 @@ namespace dsa
 
 		return node;
 	}
+	template<typename T>
+	inline typename AVL<T>::Node* AVL<T>::leftRotate(Node* node)
+	{
+		if (node == nullptr || node->right == nullptr)
+		{
+			return nullptr;
+		}
+		
+		Node* temp = node->right;
+		node->right = temp->left;
+		temp->left = node;
+
+		updateHeight(node);
+		updateHeight(temp);
+
+		return temp;
+	}
 }
