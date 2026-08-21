@@ -120,6 +120,12 @@ namespace dsa
 	}
 
 	template<typename T>
+	inline bool AVL<T>::contains(const T& value) const
+	{
+		return contains(root, value);
+	}
+
+	template<typename T>
 	inline void AVL<T>::preOrder(std::ostream& out) const
 	{
 		preOrder(out, root);
@@ -198,6 +204,28 @@ namespace dsa
 		return first->data == second->data &&
 			equals(first->left, second->left) &&
 			equals(first->right, second->right);
+	}
+
+	template<typename T>
+	inline bool AVL<T>::contains(Node* node, const T& value) const
+	{
+		if (node == nullptr)
+		{
+			return false;
+		}
+
+		if (value < node->data)
+		{
+			return contains(node->left, value);
+		}
+		else if (node->data < value)
+		{
+			return contains(node->right, value);
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	template<typename T>
