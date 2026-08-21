@@ -14,7 +14,7 @@ namespace dsa
 			T data;
 			Node* left;
 			Node* right;
-			std::size_t height;
+			int height;
 
 			Node(const T& value) : data(value), left(nullptr), right(nullptr), height(1) {}
 		};
@@ -47,8 +47,8 @@ namespace dsa
 		Node* copy(Node* node);
 		bool equals(Node* first, Node* second) const;
 
-		std::size_t getHeight(Node* node) const;
-		std::size_t getBalance(Node* node) const;
+		int getHeight(Node* node) const;
+		int getBalance(Node* node) const;
 		void updateHeight(Node* node);
 		Node* balance(Node* node);
 
@@ -204,6 +204,34 @@ namespace dsa
 		return first->data == second->data &&
 			equals(first->left, second->left) &&
 			equals(first->right, second->right);
+	}
+
+	template<typename T>
+	inline int AVL<T>::getHeight(Node* node) const
+	{
+		return node == nullptr ? 0 : node->height;
+	}
+
+	template<typename T>
+	inline int AVL<T>::getBalance(Node* node) const
+	{
+		if (node == nullptr)
+		{
+			return 0;
+		}
+
+		return getHeight(node->left) - getHeight(node->right);
+	}
+
+	template<typename T>
+	inline void AVL<T>::updateHeight(Node* node)
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
 	}
 
 	template<typename T>
