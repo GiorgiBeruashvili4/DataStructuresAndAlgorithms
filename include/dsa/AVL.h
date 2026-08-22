@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ostream>
 #include <stdexcept>
+#include <algorithm>
 
 namespace dsa
 {
@@ -117,6 +118,18 @@ namespace dsa
 	inline bool AVL<T>::empty() const
 	{
 		return count == 0;
+	}
+
+	template<typename T>
+	inline void AVL<T>::insert(const T& value)
+	{
+		insert(root, value);
+	}
+
+	template<typename T>
+	inline bool AVL<T>::remove(const T& value)
+	{
+		return remove(root, value);
 	}
 
 	template<typename T>
@@ -272,6 +285,85 @@ namespace dsa
 		}
 
 		return node;
+	}
+
+	template<typename T>
+	inline void AVL<T>::insert(Node*& node, const T& value)
+	{
+		if (node == nullptr)
+		{
+			node = new Node(value);
+			++count;
+			return;
+		}
+
+		if (value < node->data)
+		{
+			insert(node->left, value);
+		}
+		else if (node->data < value)
+		{
+			insert(node->right, value);
+		}
+		else
+		{
+			return;
+		}
+
+		node = balance(node);
+	}
+
+	template<typename T>
+	inline bool AVL<T>::remove(Node*& node, const T& value)
+	{
+		if (node == nullptr)
+		{
+			return false;
+		}
+
+		bool removed = false;
+
+		if (value < node->data)
+		{
+			removed = remove(node->left, value);
+		}
+		else if (node->data < value)
+		{
+			removed = remove(node->right, value);
+		}
+		else
+		{
+			if (node->left != nullptr && node->right != nullptr)
+			{
+				Node* predecessor = node->left;
+
+				while (predecessor->right != nullptr)
+				{
+					predecessor = predecessor->right;
+				}
+
+				node->data = predecessor->data;
+
+				removed = remove(node->left, predecessor->data);
+			}
+			else
+			{
+				Node* toDelete = node;
+				node = (node->left != nullptr) ? node->left : node->right;
+
+				delete toDelete;
+				--count;
+				removed = true;
+
+				if (node == nullptr)
+				{
+					return true;
+				}
+			}
+		}
+
+		node = balance(node);
+		return removed;
 	}
 
 	template<typename T>
