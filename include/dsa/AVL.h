@@ -235,6 +235,46 @@ namespace dsa
 	}
 
 	template<typename T>
+	inline typename AVL<T>::Node* AVL<T>::balance(Node* node)
+	{
+		if (node == nullptr)
+		{
+			return nullptr;
+		}
+
+		updateHeight(node);
+		int balanceFactor = getBalance(node);
+
+		// left heavy
+		if (balanceFactor > 1)
+		{
+			if (getBalance(node->left) < 0)
+			{
+				// LR case
+				node->left = leftRotate(node->left);
+			}
+
+			// LL case
+			return rightRotate(node);
+		}
+
+		// right heavy
+		if (balanceFactor < -1)
+		{
+			if (getBalance(node->right) > 0)
+			{
+				// RL case
+				node->right = rightRotate(node->right);
+			}
+
+			// RR case
+			return leftRotate(node);
+		}
+
+		return node;
+	}
+
+	template<typename T>
 	inline bool AVL<T>::contains(Node* node, const T& value) const
 	{
 		if (node == nullptr)
