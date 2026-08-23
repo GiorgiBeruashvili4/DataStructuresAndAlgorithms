@@ -14,6 +14,7 @@ algorithms, built for learning.
 | `SinglyLinkedList.h` | Generic singly linked list - push/pop front & back, insert, remove, reverse |
 | `DoublyLinkedList.h` | Generic doubly linked list - O(1) push/pop both ends, insert, remove, reverse |
 | `BST.h` | Binary search tree with both iterative and recursive insert/remove/contains |
+| `AVL.h` | Self-balancing binary search tree - guaranteed O(log n) height. |
 
 ### Sorting Algorithms
 | Header | Description |
