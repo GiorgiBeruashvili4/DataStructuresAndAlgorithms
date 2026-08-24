@@ -77,12 +77,12 @@ sorted data), since this implementation does not self-balance.
 ## Usage
 
 ```cpp
-#include "BST.h"
+#include "dsa/BST.h"
 #include <iostream>
 
 int main()
 {
-    BST<int> tree;
+    dsa::BST<int> tree;
 
     tree.insertRecursive(50);
     tree.insertRecursive(30);

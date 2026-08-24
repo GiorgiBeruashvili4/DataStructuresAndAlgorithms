@@ -49,12 +49,12 @@ its height is always O(log n) - there is no degenerate worst case, even with sor
 ## Usage
 
 ```cpp
-#include "AVL.h"
+#include "dsa/AVL.h"
 #include <iostream>
 
 int main()
 {
-    AVL<int> tree;
+    dsa::AVL<int> tree;
 
     tree.insert(50);
     tree.insert(30);

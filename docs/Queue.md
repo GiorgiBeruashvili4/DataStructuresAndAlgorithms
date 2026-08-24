@@ -23,17 +23,23 @@ A generic FIFO queue implementation using a singly linked list.
 ## API Overview
 
 ```cpp
-Queue<int> queue;
+#include "dsa/Queue.h"
+#include <iostream>
 
-queue.enqueue(1);
-queue.enqueue(2);
-queue.enqueue(3);
+int main()
+{
+	dsa::Queue<int> queue;
 
-queue.front(); // 1
-queue.dequeue();
-queue.front(); // 2
+	queue.enqueue(1);
+	queue.enqueue(2);
+	queue.enqueue(3);
 
-queue.size();
-queue.empty();
-queue.clear();
+	queue.front(); // 1
+	queue.dequeue();
+	queue.front(); // 2
+
+	queue.size();
+	queue.empty();
+	queue.clear();
+}
 ```

@@ -34,25 +34,31 @@ to traverse from whichever end is closer to the requested index.
 ## API Overview
 
 ```cpp
-DoublyLinkedList<int> list;
+#include "dsa/DoublyLinkedList.h"
+#include <iostream>
 
-list.push_back(1);
-list.push_front(0);
-list.insert(5, 1);
-list.removeAt(0);
-list.removeValue(5);
-list.front();
-list.back();
-list.at(0);
-list.contains(1);
-list.indexOf(1);
-list.reverse();
-list.size();
-list.empty();
-list.clear();
-
-for (int value : list)
+int main()
 {
-	std::cout << value << " ";
+	dsa::DoublyLinkedList<int> list;
+
+	list.push_back(1);
+	list.push_front(0);
+	list.insert(5, 1);
+	list.removeAt(0);
+	list.removeValue(5);
+	list.front();
+	list.back();
+	list.at(0);
+	list.contains(1);
+	list.indexOf(1);
+	list.reverse();
+	list.size();
+	list.empty();
+	list.clear();
+
+	for (int value : list)
+	{
+		std::cout << value << " ";
+	}
 }
 ```

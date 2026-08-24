@@ -23,17 +23,23 @@ A generic LIFO stack implementation using a singly linked list.
 ## API Overview
 
 ```cpp
-Stack<int> stack;
+#include "dsa/Stack.h"
+#include <iostream>
 
-stack.push(1);
-stack.push(2);
-stack.push(3);
+int main()
+{
+	dsa::Stack<int> stack;
 
-stack.peek(); // 3
-stack.pop();
-stack.peek(); // 2
+	stack.push(1);
+	stack.push(2);
+	stack.push(3);
 
-stack.size();
-stack.empty();
-stack.clear();
+	stack.peek(); // 3
+	stack.pop();
+	stack.peek(); // 2
+
+	stack.size();
+	stack.empty();
+	stack.clear();
+}
 ```

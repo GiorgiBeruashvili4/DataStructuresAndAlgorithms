@@ -23,45 +23,51 @@ A generic priority queue implementation using a binary heap over a `std::vector`
 ## API Overview
 
 ```cpp
-PriorityQueue<int> pq; // max-heap by default
+#include "dsa/PriorityQueue.h"
+#include <iostream>
 
-pq.push(2);
-pq.push(5);
-pq.push(1);
-
-pq.top(); // 5
-pq.pop();
-pq.top(); // 2
-
-pq.size();
-pq.empty();
-
-
-// min-heap
-PriorityQueue<int, std::greater<int>> minPq;
-
-minPq.push(2);
-minPq.push(5);
-minPq.push(1);
-
-minPq.top() // 1
-
-
-// Custom type, ordered by a user-defined operator<
-struct Task
+int main()
 {
-    std::string name;
-    int priority;
+    dsa::PriorityQueue<int> pq; // max-heap by default
 
-    bool operator<(const Task& other) const
+    pq.push(2);
+    pq.push(5);
+    pq.push(1);
+
+    pq.top(); // 5
+    pq.pop();
+    pq.top(); // 2
+
+    pq.size();
+    pq.empty();
+
+
+    // min-heap
+    dsa::PriorityQueue<int, std::greater<int>> minPq;
+
+    minPq.push(2);
+    minPq.push(5);
+    minPq.push(1);
+
+    minPq.top() // 1
+
+
+    // Custom type, ordered by a user-defined operator<
+    struct Task
     {
-        return priority < other.priority;
-    }
-};
+        std::string name;
+        int priority;
 
-PriorityQueue<Task> tasks;
-tasks.push({"low", 1});
-tasks.push({"high", 10});
+        bool operator<(const Task& other) const
+        {
+            return priority < other.priority;
+        }
+    };
 
-tasks.top().name; // "high"
+    dsa::PriorityQueue<Task> tasks;
+    tasks.push({"low", 1});
+    tasks.push({"high", 10});
+
+    tasks.top().name; // "high"
+}
 ```
