@@ -263,7 +263,7 @@ TEST(BSTTest, ClearEmptiesTree)
     EXPECT_TRUE(tree.empty());
 }
 
-TEST(BSTTEsts, EmptyTressAreEqual)
+TEST(BSTTest, EmptyTreesAreEqual)
 {
     dsa::BST<int> a, b;
 

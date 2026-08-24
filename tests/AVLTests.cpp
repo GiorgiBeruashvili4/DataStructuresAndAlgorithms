@@ -190,7 +190,7 @@ TEST(AVLTest, ClearEmptiesTree)
     EXPECT_TRUE(tree.empty());
 }
 
-TEST(AVLTest, EmptyTressAreEqual)
+TEST(AVLTest, EmptyTreesAreEqual)
 {
     dsa::AVL<int> a, b;
 
