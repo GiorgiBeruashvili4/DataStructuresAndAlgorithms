@@ -1,14 +1,14 @@
 # AVL — Self-Balancing Binary Search Tree
 
 A templated, header-only AVL Tree implementation in C++. Automatically
-rebalances on isertion and removal to guarantee O(log n) height at all times.
+rebalances on insertion and removal to guarantee O(log n) height at all times.
 
 ## Features
 
 - **Generic**: works with any type `T` that supports `operator<`
 - **Rule of Three**: copy constructor, copy assignment and destructor
 - **Equality comparison**: structural + value comparison via `operator==`
-- **Self-Balancing**: automatic rotations (LL, LR, RR, RL) keeps the tree balanced after every insert and remove
+- **Self-Balancing**: automatic rotations (LL, LR, RR, RL) keep the tree balanced after every insert and remove
 - **Traversals**: pre-order, in-order and post-order
 - **Tree metrics**: `size()`, `empty()`
 - **Min/Max**: `min()` and `max()` retrieve the smallest/largest element
