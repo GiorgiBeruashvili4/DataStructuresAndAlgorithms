@@ -41,7 +41,7 @@ Avoids slow performance on sorted array, since the pivot is not fixed.
 
 ### Median-of-Three Pivot
 Selects the median of the first, middle and last elements of the current range as the pivot. 
-Avoids picking the smallest of largest value as pivot on already-sorted or reverse-sorted input.
+Avoids picking the smallest or largest value as pivot on already-sorted or reverse-sorted input.
 
 ## Complexity Analysis
 Time complexity:

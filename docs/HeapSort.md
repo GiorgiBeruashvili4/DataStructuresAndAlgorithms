@@ -2,7 +2,7 @@
 
 ## Overview
 Heap sort is a comparison-based sorting algorithm that builds a max-heap from the array, 
-then repeatedly extracts the largest element and places is at the end, 
+then repeatedly extracts the largest element and places it at the end, 
 shrinking the heap by one each time until the array is fully sorted.
 
 ## Algorithm Steps
