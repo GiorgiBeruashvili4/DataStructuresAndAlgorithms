@@ -49,7 +49,7 @@ int main()
     minPq.push(5);
     minPq.push(1);
 
-    minPq.top() // 1
+    minPq.top(); // 1
 
 
     // Custom type, ordered by a user-defined operator<
