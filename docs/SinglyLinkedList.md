@@ -7,7 +7,7 @@ A generic singly linked list implementation.
 - `SinglyLinkedList<T>` template - works with any data type.
 - Dynamic size - grows and shrinks as elements are added/removed.
 - Rule-of-five - copy constructor, move constructor, copy assignment, move assignments, destructor
-- Forward iterator (`begin()` / `end()`), including `const` iteration and range-base `for` loops.
+- Forward iterator (`begin()` / `end()`), including `const` iteration and range-based `for` loops.
 
 ## Time Complexity
 
