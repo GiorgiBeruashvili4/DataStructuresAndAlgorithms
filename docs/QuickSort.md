@@ -48,7 +48,7 @@ Avoids picking the smallest or largest value as pivot on already-sorted or rever
 |------|------|------|
 | Best | O(n log n)  | |
 | Average | O(n log n)  | |
-| Worst | O(n²)  | Only with a poorly chosen pivot. Random and median-of-three pivots make this practically unreachable for typical input. |
+| Worst | O(n²)  | Only with a poorly chosen pivot. |
 
 | Case | Space | Notes |
 |------|------|------|
