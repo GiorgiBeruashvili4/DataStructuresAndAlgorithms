@@ -12,10 +12,11 @@ the final sorted array one element at a time.
 5. Repeat until the entire array is sorted.
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n) - If array is already sorted
-- Average Case: O(n²)
-- Worst case: O(n²) - If array is sorted in reverse order
+| Case | Time | Notes |
+|------|------|------|
+| Best | O(n) | If array is already sorted |
+| Average | O(n²) |  |
+| Worst | O(n²) | If array is sorted in reverse order |
 
 Space complexity: O(1)
 

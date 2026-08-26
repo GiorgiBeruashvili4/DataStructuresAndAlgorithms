@@ -13,10 +13,11 @@ shrinking the heap by one each time until the array is fully sorted.
 5. Repeat steps 2-4 until the heap contains only one element.
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n log n)
-- Average Case: O(n log n)
-- Worst case: O(n log n)
+| Case | Time |
+|------|------|
+| Best | O(n log n) |
+| Average | O(n log n) |
+| Worst | O(n log n) |
 
 Space complexity: O(1)
 

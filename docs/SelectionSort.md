@@ -13,10 +13,11 @@ in the correct position.
 5. Repeat until the entire array is sorted.
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n²)
-- Average Case: O(n²)
-- Worst case: O(n²)
+| Case | Time |
+|------|------|
+| Best | O(n²) |
+| Average | O(n²) |
+| Worst | O(n²) |
 
 Space complexity: O(1)
 

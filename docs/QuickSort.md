@@ -44,15 +44,16 @@ Selects the median of the first, middle and last elements of the current range a
 Avoids picking the smallest or largest value as pivot on already-sorted or reverse-sorted input.
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n log n)
-- Average Case: O(n log n)
-- Worst case: O(n²) - Only with a poorly chosen pivot (e.g.last element on sorted array). 
-  Random and median-of-three pivots make this practically unreachable for typical input.
+| Case | Time | Notes |
+|------|------|------|
+| Best | O(n log n) | |
+| Average | O(n log n) | |
+| Worst | O(n²) | Only with a poorly chosen pivot (e.g.last element on sorted array). Random and median-of-three pivots make this practically unreachable for typical input. |
 
-Space complexity:
-- Average case: O(log n) - Recursion stack
-- Worst case: O(n) - With an unbalanced partition.
+| Case | Space | Notes |
+|------|------|------|
+| Average | O(log n) | Recursion stack |
+| Worst | O(n) | With an unbalanced partition |
 
 ## Properties
 - Stable: No

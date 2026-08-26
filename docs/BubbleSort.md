@@ -12,10 +12,11 @@ compares neighboring elements and swaps them if they are in the wrong order.
 5. Stop early if no swaps are made during a pass that means the array is already sorted.
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n) - If array is already sorted (with optimization)
-- Average Case: O(n²)
-- Worst case: O(n²) - If array is sorted in reverse order
+| Case | Time | Notes |
+|------|------|------|
+| Best | O(n) | If array is already sorted (with optimization) |
+| Average | O(n²) |  |
+| Worst | O(n²) | If array is sorted in reverse order |
 
 Space complexity: O(1)
 

@@ -12,10 +12,11 @@ array into halves, recursively sorts each half and then merges the sorted halves
 5. Repeat until the base case is reached (subarray of size 1 or 0).
 
 ## Complexity Analysis
-Time complexity:
-- Best case: O(n log n)
-- Average Case: O(n log n)
-- Worst case: O(n log n)
+| Case | Time |
+|------|------|
+| Best | O(n log n) |
+| Average | O(n log n) |
+| Worst | O(n log n) |
 
 Space complexity: O(n) - Temporary left/right subarrays
 
