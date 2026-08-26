@@ -46,9 +46,9 @@ Avoids picking the smallest or largest value as pivot on already-sorted or rever
 ## Complexity Analysis
 | Case | Time | Notes |
 |------|------|------|
-| Best | O(n log n) | |
-| Average | O(n log n) | |
-| Worst | O(n²) | Only with a poorly chosen pivot (e.g.last element on sorted array). Random and median-of-three pivots make this practically unreachable for typical input. |
+| Best | O(n log n)  | |
+| Average | O(n log n)  | |
+| Worst | O(n²)  | Only with a poorly chosen pivot (e.g.last element on sorted array). Random and median-of-three pivots make this practically unreachable for typical input. |
 
 | Case | Space | Notes |
 |------|------|------|
