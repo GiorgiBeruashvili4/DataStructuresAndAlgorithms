@@ -1,7 +1,7 @@
 ﻿# Data Structures And Algorithms
 
 ![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)
-![CMake](https://img.shields.io/badge/CMake-3.20%2B-blue.svg
+![CMake](https://img.shields.io/badge/CMake-3.20%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 A header-only C++20 Library of hand-implemented data structures and 
