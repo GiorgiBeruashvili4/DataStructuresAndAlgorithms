@@ -1,7 +1,17 @@
 ﻿# Data Structures And Algorithms
 
+![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)
+![CMake](https://img.shields.io/badge/CMake-3.20%2B-blue.svg
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 A header-only C++20 Library of hand-implemented data structures and 
 algorithms, built for learning.
+
+## Requirements
+
+- CMake 3.20+
+- C++20-compliant compiler
+- Git (for fetching GoogleTest via `FetchContent`)
 
 ## Contents
 
@@ -25,6 +35,16 @@ algorithms, built for learning.
 | `MergeSort.h` | O(n log n), stable, extra O(n) space |
 | `HeapSort.h` | O(n log n), not stable, no extra space |
 | `HoarePartition_*.h` / `LomutoPartition_*.h` | Six QuickSort variants comparing Hoare and Lomuto partition schemes with different pivot-selection strategies - see `docs/QuickSort.md` |
+
+## Documentation
+
+Detailed write-ups (API overview, complexity analysis, usage example) for each 
+data structure and algorithm are available in the [`docs/`](docs/) directory.
+
+- [AVL](docs/AVL.md), [BST](docs/BST.md)
+- [DoublyLinkedList](docs/DoublyLinkedList.md), [SinglyLinkedList](docs/SinglyLinkedList.md)
+- [Stack](docs/Stack.md), [Queue](docs/Queue.md), [PriorityQueue](docs/PriorityQueue.md)
+- [BubbleSort](docs/BubbleSort.md), [InsertionSort](docs/InsertionSort.md), [SelectionSort](docs/SelectionSort.md), [MergeSort](docs/MergeSort.md), [HeapSort](docs/HeapSort.md), [QuickSort](docs/QuickSort.md)
 
 ## Building & Testing
 
